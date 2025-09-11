@@ -1,8 +1,8 @@
-# Config
+# My NodeJS Configs
 
-Personal configurations for Nelson Lai projects.
+Personal configurations for supporting Trevor McDougald's projects
 
-This monorepo contains shared configuration packages for various tools used across Nelson Lai's projects, including ESLint, Prettier, and TypeScript.
+This monorepo contains shared configuration packages for various tools used across projects, including ESLint, Prettier, and TypeScript.
 
 ## Packages
 
