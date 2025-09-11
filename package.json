@@ -1,8 +1,8 @@
 {
-  "name": "@nelsonlaidev/config",
+  "name": "@mcdougald/config",
   "version": "0.0.0",
   "license": "MIT",
-  "author": "Nelson Lai <me@nelsonlai.dev> (https://github.com/nelsonlaidev/)",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
   "type": "module",
   "scripts": {
     "build": "turbo build",
@@ -30,9 +30,9 @@
     "@changesets/cli": "^2.29.6",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@nelsonlaidev/eslint-config": "workspace:*",
-    "@nelsonlaidev/prettier-config": "workspace:*",
-    "@nelsonlaidev/typescript-config": "workspace:*",
+    "@mcdougald/eslint-config": "workspace:*",
+    "@mcdougald/prettier-config": "workspace:*",
+    "@mcdougald/typescript-config": "workspace:*",
     "@types/node": "^22.18.0",
     "cspell": "^9.2.0",
     "czg": "^1.12.0",

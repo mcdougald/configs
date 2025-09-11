@@ -4,7 +4,7 @@ import { prettierPlugin, prettierPluginRecommended } from '../plugins'
 
 export const prettier = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/prettier/rules',
+    name: 'mcdougald/prettier/rules',
     plugins: {
       prettier: prettierPlugin
     },

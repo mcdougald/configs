@@ -4,7 +4,7 @@ import { importLitePlugin } from '../plugins'
 
 export const imports = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/imports/rules',
+    name: 'mcdougald/imports/rules',
     plugins: {
       'import-lite': importLitePlugin
     },

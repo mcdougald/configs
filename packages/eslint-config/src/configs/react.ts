@@ -5,7 +5,7 @@ import { reactHooksPlugin, reactPlugin } from '../plugins'
 
 export const react = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/react/rules',
+    name: 'mcdougald/react/rules',
     files: [GLOB_SRC],
     plugins: {
       ...reactPlugin.configs.all.plugins,

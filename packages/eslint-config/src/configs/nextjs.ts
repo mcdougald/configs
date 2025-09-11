@@ -4,7 +4,7 @@ import { nextPlugin } from '../plugins'
 
 export const nextjs = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/nextjs/rules',
+    name: 'mcdougald/nextjs/rules',
     plugins: {
       '@next/next': nextPlugin
     },

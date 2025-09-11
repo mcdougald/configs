@@ -4,7 +4,7 @@ import { jsdocPlugin } from '../plugins'
 
 export const jsdoc = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/jsdoc/rules',
+    name: 'mcdougald/jsdoc/rules',
     plugins: {
       jsdoc: jsdocPlugin
     },

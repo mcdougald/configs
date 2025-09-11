@@ -1,18 +1,18 @@
-# @nelsonlaidev/typescript-config
+# @mcdougald/typescript-config
 
 Personal TypeScript configurations for Nelson Lai projects.
 
 ## Installation
 
 ```bash
-npm i -D @nelsonlaidev/typescript-config
+npm i -D @mcdougald/typescript-config
 ```
 
 Create a `tsconfig.json` file with the following content:
 
 ```jsonc
 {
-  "extends": "@nelsonlaidev/typescript-config/base.json",
+  "extends": "@mcdougald/typescript-config/base.json",
   "compilerOptions": {
     // Custom TypeScript configuration options
   }
@@ -23,6 +23,6 @@ Create a `tsconfig.json` file with the following content:
 
 You can also use predefined presets for your configuration.
 
-- `@nelsonlaidev/typescript-config/base.json`
-- `@nelsonlaidev/typescript-config/next.json`
-- `@nelsonlaidev/typescript-config/react-library.json`
+- `@mcdougald/typescript-config/base.json`
+- `@mcdougald/typescript-config/next.json`
+- `@mcdougald/typescript-config/react-library.json`

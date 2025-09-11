@@ -4,7 +4,7 @@ import { vitestPlugin } from '../plugins'
 
 export const vitest = (glob: string, overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/vitest/rules',
+    name: 'mcdougald/vitest/rules',
     files: [glob],
     plugins: {
       vitest: vitestPlugin

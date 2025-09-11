@@ -1,17 +1,17 @@
 {
-  "name": "@nelsonlaidev/eslint-config",
+  "name": "@mcdougald/eslint-config",
   "version": "1.0.0",
-  "homepage": "https://github.com/nelsonlaidev/config/blob/main/packages/eslint-config/README.md",
+  "homepage": "https://github.com/mcdougald/configs/blob/main/packages/eslint-config/README.md",
   "bugs": {
-    "url": "https://github.com/nelsonlaidev/config/issues"
+    "url": "https://github.com/mcdougald/configs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nelsonlaidev/config.git",
+    "url": "git+https://github.com/mcdougald/config.git",
     "directory": "packages/eslint-config"
   },
   "license": "MIT",
-  "author": "Nelson Lai <me@nelsonlai.dev> (https://github.com/nelsonlaidev/)",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
   "type": "module",
   "exports": {
     "import": "./dist/index.js",
@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@eslint/config-inspector": "^1.2.0",
-    "@nelsonlaidev/typescript-config": "workspace:*",
+    "@mcdougald/typescript-config": "workspace:*",
     "@types/node": "^22.18.0",
     "eslint": "^9.34.0",
     "tsdown": "^0.14.2"

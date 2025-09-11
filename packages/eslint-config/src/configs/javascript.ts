@@ -7,7 +7,7 @@ import { unusedImportsPlugin } from '../plugins'
 
 export const javascript = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/javascript/setup',
+    name: 'mcdougald/javascript/setup',
     languageOptions: {
       ecmaVersion: 2022,
       globals: {
@@ -33,7 +33,7 @@ export const javascript = (overrides?: RuleOverrides): FlatConfig[] => [
     }
   },
   {
-    name: 'nelsonlaidev/javascript/rules',
+    name: 'mcdougald/javascript/rules',
     plugins: {
       'unused-imports': unusedImportsPlugin
     },

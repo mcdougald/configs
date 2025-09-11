@@ -4,7 +4,7 @@ import { importSortPlugin } from '../plugins'
 
 export const importSort = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/import-sort/rules',
+    name: 'mcdougald/import-sort/rules',
     plugins: {
       'import-sort': importSortPlugin
     },

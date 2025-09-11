@@ -4,7 +4,7 @@ import { commentsPlugin } from '../plugins'
 
 export const comments = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/eslint-comments/rules',
+    name: 'mcdougald/eslint-comments/rules',
     plugins: {
       '@eslint-community/eslint-comments': commentsPlugin
     },

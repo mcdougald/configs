@@ -4,7 +4,7 @@ import { nodePlugin } from '../plugins'
 
 export const node = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/node/rules',
+    name: 'mcdougald/node/rules',
     plugins: {
       n: nodePlugin
     },

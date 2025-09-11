@@ -1,4 +1,4 @@
-# @nelsonlaidev/eslint-config
+# @mcdougald/eslint-config
 
 ## 1.0.0
 

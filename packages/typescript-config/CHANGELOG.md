@@ -1,4 +1,4 @@
-# @nelsonlaidev/typescript-config
+# @mcdougald/typescript-config
 
 ## 0.0.3
 

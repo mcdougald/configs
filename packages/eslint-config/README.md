@@ -1,17 +1,17 @@
-# @nelsonlaidev/eslint-config
+# @mcdougald/eslint-config
 
 Personal ESLint configurations for Nelson Lai projects.
 
 ## Installation
 
 ```bash
-npm i -D @nelsonlaidev/eslint-config
+npm i -D @mcdougald/eslint-config
 ```
 
 Create an `eslint.config.ts` file with the following content:
 
 ```js
-import { defineConfig } from '@nelsonlaidev/eslint-config'
+import { defineConfig } from '@mcdougald/eslint-config'
 
 export default defineConfig({
   // Custom ESLint configuration options

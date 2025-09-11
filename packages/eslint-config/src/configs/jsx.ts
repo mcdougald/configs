@@ -5,7 +5,7 @@ import { jsxA11yPlugin } from '../plugins'
 
 export const jsx = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/jsx/setup',
+    name: 'mcdougald/jsx/setup',
     files: [GLOB_JSX, GLOB_TSX],
     languageOptions: {
       parserOptions: {
@@ -16,7 +16,7 @@ export const jsx = (overrides?: RuleOverrides): FlatConfig[] => [
     }
   },
   {
-    name: 'nelsonlaidev/jsx/rules',
+    name: 'mcdougald/jsx/rules',
     files: [GLOB_JSX, GLOB_TSX],
     plugins: {
       'jsx-a11y': jsxA11yPlugin

@@ -1,17 +1,17 @@
 {
-  "name": "@nelsonlaidev/prettier-config",
+  "name": "@mcdougald/prettier-config",
   "version": "0.1.0",
-  "homepage": "https://github.com/nelsonlaidev/config/blob/main/packages/prettier-config/README.md",
+  "homepage": "https://github.com/mcdougald/configs/blob/main/packages/prettier-config/README.md",
   "bugs": {
-    "url": "https://github.com/nelsonlaidev/config/issues"
+    "url": "https://github.com/mcdougald/configs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nelsonlaidev/config.git",
+    "url": "git+https://github.com/mcdougald/config.git",
     "directory": "packages/prettier-config"
   },
   "license": "MIT",
-  "author": "Nelson Lai <me@nelsonlai.dev> (https://github.com/nelsonlaidev/)",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
   "type": "module",
   "exports": {
     "import": "./dist/index.js",
@@ -32,8 +32,8 @@
     "*.ts": "eslint --fix"
   },
   "devDependencies": {
-    "@nelsonlaidev/eslint-config": "workspace:*",
-    "@nelsonlaidev/typescript-config": "workspace:*",
+    "@mcdougald/eslint-config": "workspace:*",
+    "@mcdougald/typescript-config": "workspace:*",
     "@types/node": "^22.18.0",
     "prettier": "^3.6.2",
     "tsdown": "^0.14.2"

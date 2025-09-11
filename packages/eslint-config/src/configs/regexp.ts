@@ -4,7 +4,7 @@ import { regexpPlugin } from '../plugins'
 
 export const regexp = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/regexp/rules',
+    name: 'mcdougald/regexp/rules',
     plugins: {
       regexp: regexpPlugin
     },

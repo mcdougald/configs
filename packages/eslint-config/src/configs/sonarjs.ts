@@ -4,7 +4,7 @@ import { sonarjsPlugin } from '../plugins'
 
 export const sonarjs = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/sonarjs/rules',
+    name: 'mcdougald/sonarjs/rules',
     plugins: {
       sonarjs: sonarjsPlugin
     },

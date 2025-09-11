@@ -9,7 +9,7 @@ import { typescriptPlugin } from '../plugins'
 
 export const typescript = (tsconfigRootDir: string = process.cwd(), overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/typescript/setup',
+    name: 'mcdougald/typescript/setup',
     files: [GLOB_TS, GLOB_TSX],
     languageOptions: {
       parser,
@@ -24,7 +24,7 @@ export const typescript = (tsconfigRootDir: string = process.cwd(), overrides?: 
     }
   },
   {
-    name: 'nelsonlaidev/typescript/rules',
+    name: 'mcdougald/typescript/rules',
     files: [GLOB_TS, GLOB_TSX],
     rules: {
       ...typescriptPlugin.configs['eslint-recommended'].overrides[0].rules,

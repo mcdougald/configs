@@ -4,7 +4,7 @@ import { tailwindcssPlugin } from '../plugins'
 
 export const tailwindcss = (entryPoint: string, overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/tailwindcss/rules',
+    name: 'mcdougald/tailwindcss/rules',
     plugins: {
       'better-tailwindcss': tailwindcssPlugin
     },

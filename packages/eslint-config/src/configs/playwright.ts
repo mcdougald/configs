@@ -6,13 +6,13 @@ import { playwrightPlugin } from '../plugins'
 
 export const playwright = (glob: string, overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/playwright/setup',
+    name: 'mcdougald/playwright/setup',
     languageOptions: {
       globals: globals['shared-node-browser']
     }
   },
   {
-    name: 'nelsonlaidev/playwright/rules',
+    name: 'mcdougald/playwright/rules',
     files: [glob],
     plugins: {
       playwright: playwrightPlugin

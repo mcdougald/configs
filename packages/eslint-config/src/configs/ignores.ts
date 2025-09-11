@@ -2,7 +2,7 @@ import type { FlatConfig } from '../types'
 
 export const ignores = (userIgnores: string[] = []): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/ignores',
+    name: 'mcdougald/ignores',
     ignores: [...userIgnores]
   }
 ]

@@ -4,7 +4,7 @@ import { unicornPlugin } from '../plugins'
 
 export const unicorn = (overrides?: RuleOverrides): FlatConfig[] => [
   {
-    name: 'nelsonlaidev/unicorn/rules',
+    name: 'mcdougald/unicorn/rules',
     plugins: {
       unicorn: unicornPlugin
     },

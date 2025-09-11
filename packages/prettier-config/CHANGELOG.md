@@ -1,4 +1,4 @@
-# @nelsonlaidev/prettier-config
+# @mcdougald/prettier-config
 
 ## 0.1.0
 
