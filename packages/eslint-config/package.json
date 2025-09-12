@@ -5,6 +5,19 @@
   "bugs": {
     "url": "https://github.com/mcdougald/configs/issues"
   },
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "eslint-config",
+    "nextjs",
+    "jsx",
+    "playwright",
+    "prettier",
+    "sonar",
+    "unicorn",
+    "vitest",
+    "de-morgan"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mcdougald/config.git",
