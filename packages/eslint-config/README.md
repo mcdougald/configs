@@ -1,6 +1,6 @@
 # @mcdougald/eslint-config
 
-Personal ESLint configurations for Nelson Lai projects.
+Personal ESLint configurations for Trevor McDougald's projects.
 
 ## Installation
 

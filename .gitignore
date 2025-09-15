@@ -8,5 +8,15 @@ node_modules
 dist
 .eslint-config-inspector
 
-# Misc
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Misc
+*.log

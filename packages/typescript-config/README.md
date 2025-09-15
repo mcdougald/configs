@@ -1,6 +1,6 @@
 # @mcdougald/typescript-config
 
-Personal TypeScript configurations for Nelson Lai projects.
+Personal TypeScript configurations for Trevor McDougald's projects.
 
 ## Installation
 

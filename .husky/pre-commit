@@ -1,2 +1,5 @@
-echo $PATH
-pnpm lint-staged
+#!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
+
+export PATH="/Users/trevormcdougald/.local/share/mise/installs/node/22.13.1/bin:$PATH"
+/Users/trevormcdougald/.local/share/mise/installs/pnpm/10.16.1/pnpm lint-staged

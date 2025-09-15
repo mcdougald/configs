@@ -1,6 +1,6 @@
 # @mcdougald/prettier-config
 
-Personal Prettier configurations for Nelson Lai projects.
+Personal Prettier configurations for Trevor McDougald's projects.
 
 ## Installation
 

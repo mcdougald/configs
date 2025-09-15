@@ -1,6 +1,16 @@
 {
   "name": "@mcdougald/typescript-config",
   "version": "0.0.3",
+  "keywords": [
+    "typescript",
+    "tsconfig",
+    "typescript-config",
+    "nextjs",
+    "react",
+    "react-library",
+    "base",
+    "mcdougald"
+  ],
   "homepage": "https://github.com/mcdougald/configs/blob/main/packages/typescript-config/README.md",
   "bugs": {
     "url": "https://github.com/mcdougald/configs/issues"

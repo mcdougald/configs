@@ -1,6 +1,6 @@
 {
   "name": "@mcdougald/eslint-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/mcdougald/configs/blob/main/packages/eslint-config/README.md",
   "bugs": {
     "url": "https://github.com/mcdougald/configs/issues"
@@ -16,7 +16,8 @@
     "sonar",
     "unicorn",
     "vitest",
-    "de-morgan"
+    "de-morgan",
+    "mcdougald"
   ],
   "repository": {
     "type": "git",

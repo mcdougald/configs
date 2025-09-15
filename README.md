@@ -1,14 +1,14 @@
 # My NodeJS Configs
 
-Personal configurations for supporting Trevor McDougald's projects
+Personal configurations for supporting Trevor McDougald's projects, thanks for viewing!
 
-This monorepo contains shared configuration packages for various tools used across projects, including ESLint, Prettier, and TypeScript.
+This monorepo contains shared configuration packages for various tools used across projects, including ESLint, Prettier, TypeScript, and Biome. These configurations are designed to enforce consistent code style, formatting, and best practices across all my projects.
 
 ## Packages
 
 ### [@mcdougald/eslint-config](packages/eslint-config)
 
-A shared ESLint configuration to enforce consistent code style and best practices.
+A comprehensive ESLint configuration that enforces consistent code style and best practices across JavaScript and TypeScript projects.
 
 ```bash
 npm i -D @mcdougald/eslint-config
@@ -16,7 +16,7 @@ npm i -D @mcdougald/eslint-config
 
 ### [@mcdougald/prettier-config](packages/prettier-config)
 
-A shared Prettier configuration to ensure consistent code formatting.
+A shared Prettier configuration to ensure consistent code formatting across all projects.
 
 ```bash
 npm i -D @mcdougald/prettier-config prettier-plugin-packagejson
@@ -24,11 +24,50 @@ npm i -D @mcdougald/prettier-config prettier-plugin-packagejson
 
 ### [@mcdougald/typescript-config](packages/typescript-config)
 
-A shared TypeScript configuration to standardize TypeScript compiler options.
+A shared TypeScript configuration to standardize TypeScript compiler options and ensure consistent type checking.
 
 ```bash
 npm i -D @mcdougald/typescript-config
 ```
+
+### [@mcdougald/biome-config](packages/biome-config)
+
+A modern Biome configuration for fast formatting and linting, providing an alternative to ESLint and Prettier with better performance.
+
+```bash
+npm i -D @mcdougald/biome-config
+```
+
+## Getting Started
+
+Each package in this monorepo can be installed independently. Choose the configurations that best fit your project needs:
+
+- **ESLint + Prettier + TypeScript**: Traditional setup with maximum compatibility
+- **Biome**: Modern alternative with better performance and fewer dependencies
+
+## Contributing
+
+While these are personal configurations, I welcome feedback and suggestions! If you find issues or have ideas for improvements:
+
+1. **Open an issue** on [GitHub](https://github.com/mcdougald/configs/issues)
+2. **Submit a pull request** with your proposed changes
+3. **Reach out directly** using the contact information below
+
+## Contact
+
+**Trevor McDougald**
+
+- 📧 **Email**: [mcdougald.job@gmail.com](mailto:mcdougald.job@gmail.com)
+- 🐙 **GitHub**: [@mcdougald](https://github.com/mcdougald)
+- 💼 **LinkedIn**: [Trevor McDougald](https://linkedin.com/in/trevor-mcdougald)
+- 🌐 **Website**: [trev.fyi](https://trevormcdougald.com)
+
+Feel free to reach out for:
+
+- Questions about these configurations
+- Collaboration opportunities
+- General development discussions
+- Feedback on the packages
 
 ## Credits
 
@@ -37,7 +76,7 @@ This project is inspired by the excellent work from:
 - [antfu/eslint-config](https://github.com/antfu/eslint-config)
 - [sxzz/eslint-config](https://github.com/sxzz/eslint-config)
 - [nelsonlaidev/config](https://github.com/nelsonlaidev/config)
-- 
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
