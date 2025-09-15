@@ -1,2 +1,10 @@
-pnpm commitlint --edit $1
-pnpm check:spelling $1
+#!/usr/bin/env sh
+
+# Try to find pnpm in PATH first, fallback to mise exec
+if command -v pnpm >/dev/null 2>&1; then
+  pnpm commitlint --edit $1
+  pnpm check:spelling $1
+else
+  mise exec pnpm -- commitlint --edit $1
+  mise exec pnpm -- check:spelling $1
+fi

@@ -2,4 +2,10 @@
 # . "$(dirname -- "$0")/_/husky.sh"
 
 export PATH="/Users/trevormcdougald/.local/share/mise/installs/node/22.13.1/bin:$PATH"
-/Users/trevormcdougald/.local/share/mise/installs/pnpm/10.16.1/pnpm lint-staged
+
+# Try to find pnpm in PATH first, fallback to mise exec
+if command -v pnpm >/dev/null 2>&1; then
+  pnpm lint-staged
+else
+  mise exec pnpm -- lint-staged
+fi

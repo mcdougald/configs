@@ -1,6 +1,6 @@
 {
   "name": "@mcdougald/eslint-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "https://github.com/mcdougald/configs/blob/main/packages/eslint-config/README.md",
   "bugs": {
     "url": "https://github.com/mcdougald/configs/issues"
@@ -27,6 +27,8 @@
   "license": "MIT",
   "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "import": "./dist/index.js",
     "types": "./dist/index.d.ts"

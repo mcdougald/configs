@@ -1,6 +1,6 @@
 {
 	"name": "@mcdougald/tailwindcss-config",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A comprehensive Tailwind CSS configuration with modern plugins and utilities for React applications",
 	"keywords": [
 		"tailwindcss",
@@ -40,8 +40,12 @@
 		"tailwindcss-motion": "^1.1.0"
 	},
 	"devDependencies": {
-		"@types/node": "20",
-		"tailwindcss": "4.0.0"
+		"@mcdougald/eslint-config": "workspace:*",
+		"@mcdougald/typescript-config": "workspace:*",
+		"@types/node": "^22.18.0",
+		"eslint": "^9.34.0",
+		"tailwindcss": "4.0.0",
+		"typescript": "^5.9.2"
 	},
 	"peerDependencies": {
 		"tailwindcss": "4.0.0"
