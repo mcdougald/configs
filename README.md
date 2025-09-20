@@ -40,39 +40,39 @@ Feel free to reach out for:
 
 ## Packages
 
-### [@mcdougald/eslint-config](packages/eslint-config)
+### [@mcdougald/eslint-config](packages/eslint-config/README.md)
 
 A comprehensive ESLint configuration that enforces consistent code style and best practices across JavaScript and TypeScript projects.
 
 ```bash
-npm i -D @mcdougald/eslint-config
+pnpm add -D @mcdougald/eslint-config
 ```
 
-### [@mcdougald/prettier-config](packages/prettier-config)
+### [@mcdougald/prettier-config](packages/prettier-config/README.md)
 
 A shared Prettier configuration to ensure consistent code formatting across all projects.
 
 ```bash
-npm i -D @mcdougald/prettier-config prettier-plugin-packagejson
+pnpm add -D @mcdougald/prettier-config prettier-plugin-packagejson
 ```
 
-### [@mcdougald/typescript-config](packages/typescript-config)
+### [@mcdougald/typescript-config](packages/typescript-config/README.md)
 
 A shared TypeScript configuration to standardize TypeScript compiler options and ensure consistent type checking.
 
 ```bash
-npm i -D @mcdougald/typescript-config
+pnpm add -D @mcdougald/typescript-config
 ```
 
-### [@mcdougald/biome-config](packages/biome-config)
+### [@mcdougald/biome-config](packages/biome-config/README.md)
 
 A modern Biome configuration for fast formatting and linting, providing an alternative to ESLint and Prettier with better performance.
 
 ```bash
-npm i -D @mcdougald/biome-config
+pnpm add -D @mcdougald/biome-config
 ```
 
-### [@mcdougald/tailwindcss-config](packages/tailwindcss-config)
+### [@mcdougald/tailwindcss-config](packages/tailwindcss-config/README.md)
 
 A comprehensive Tailwind CSS configuration with modern plugins and utilities for React applications. Includes optimized content paths, dark mode support, custom animations, and essential plugins for forms, typography, and aspect ratios.
 
@@ -86,7 +86,7 @@ A comprehensive Tailwind CSS configuration with modern plugins and utilities for
 - 🎯 **React Ready**: Pre-configured for React and Next.js applications
 
 ```bash
-npm i -D @mcdougald/tailwindcss-config
+pnpm add -D @mcdougald/tailwindcss-config
 ```
 
 ## Getting Started
@@ -102,13 +102,13 @@ Each package in this monorepo can be installed independently. Choose the configu
 **For a React/Next.js project:**
 
 ```bash
-npm i -D @mcdougald/eslint-config @mcdougald/prettier-config @mcdougald/typescript-config @mcdougald/tailwindcss-config
+pnpm add -D @mcdougald/eslint-config @mcdougald/prettier-config @mcdougald/typescript-config @mcdougald/tailwindcss-config
 ```
 
 **For a modern project with Biome:**
 
 ```bash
-npm i -D @mcdougald/biome-config @mcdougald/typescript-config @mcdougald/tailwindcss-config
+pnpm add -D @mcdougald/biome-config @mcdougald/typescript-config @mcdougald/tailwindcss-config
 ```
 
 ## Contributing

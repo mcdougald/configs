@@ -35,7 +35,7 @@
 	"dependencies": {
 		"@tailwindcss/aspect-ratio": "0.4.2",
 		"@tailwindcss/forms": "0.5.10",
-		"@tailwindcss/typography": "0.5.17",
+		"@tailwindcss/typography": "0.5.18",
 		"tailwindcss-animate": "1.0.7",
 		"tailwindcss-motion": "1.1.1"
 	},
@@ -43,7 +43,7 @@
 		"@mcdougald/eslint-config": "workspace:*",
 		"@mcdougald/typescript-config": "workspace:*",
 		"@types/node": "^24.5.2",
-		"eslint": "^9.35.0",
+		"eslint": "^9.36.0",
 		"tailwindcss": "4.1.13",
 		"typescript": "^5.9.2"
 	},

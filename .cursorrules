@@ -1,0 +1,20 @@
+# Cursor Rules for Configs Workspace
+
+## Package Manager
+- Always use `pnpm` instead of `npm` for package management
+- Use `pnpm install` instead of `npm install`
+- Use `pnpm add` instead of `npm install <package>`
+- Use `pnpm remove` instead of `npm uninstall <package>`
+- Use `pnpm update` instead of `npm update`
+- Use `pnpm outdated` instead of `npm outdated`
+
+## Workspace Management
+- This is a pnpm workspace with multiple packages
+- Use `pnpm -w` for workspace-level commands
+- Use `pnpm --filter <package-name>` for package-specific commands
+- Always run commands from the appropriate directory or use workspace filters
+
+## Code Style
+- Follow the existing ESLint and Prettier configurations
+- Use TypeScript for all new files
+- Maintain consistent formatting and linting rules across all packages
