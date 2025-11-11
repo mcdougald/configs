@@ -1,0 +1,84 @@
+{
+  "name": "@mcdougald/hooks",
+  "version": "0.0.1",
+  "description": "A growing collection of reusable React hooks for personal and open-source projects.",
+  "keywords": [
+    "react",
+    "hooks",
+    "use",
+    "mcdougald",
+    "utilities"
+  ],
+  "homepage": "https://github.com/mcdougald/configs/blob/main/packages/hooks/README.md",
+  "bugs": {
+    "url": "https://github.com/mcdougald/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcdougald/config.git",
+    "directory": "packages/hooks"
+  },
+  "license": "MIT",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rm -rf .turbo dist",
+    "dev": "tsdown --watch",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
+  },
+  "devDependencies": {
+    "@mcdougald/eslint-config": "workspace:*",
+    "@mcdougald/typescript-config": "workspace:*",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.34.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsdown": "^0.14.2",
+    "typescript": "^5.9.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.8.0",
+    "@tanstack/react-query": "^5.90.7",
+    "@tanstack/react-table": "^8.21.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cobe": "^0.6.5",
+    "embla-carousel": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "lodash-es": "^4.17.21",
+    "lucide-react": "^0.553.0",
+    "react-responsive": "^10.0.1",
+    "react-router-dom": "^7.9.5",
+    "react-virtual": "^2.10.4",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17",
+    "use-resize-observer": "^9.1.0"
+  }
+}
