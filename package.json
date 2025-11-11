@@ -1,0 +1,52 @@
+{
+  "name": "@mcdougald/configs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
+  "type": "module",
+  "scripts": {
+    "build": "turbo build",
+    "check": "turbo lint && turbo type-check && pnpm format:check && pnpm check:spelling && pnpm check:knip",
+    "check:knip": "knip",
+    "check:spelling": "cspell -c cspell.json --no-progress --no-summary --no-must-find-files --unique",
+    "clean": "turbo clean && rm -rf .turbo",
+    "dev": "turbo dev",
+    "format:check": "prettier --cache --check --ignore-path .gitignore --ignore-path .prettierignore .",
+    "format:write": "prettier --cache --write --list-different --ignore-path .gitignore --ignore-path .prettierignore .",
+    "lint": "turbo lint",
+    "prepare": "husky",
+    "release": "changeset publish",
+    "type-check": "turbo type-check",
+    "version": "changeset version"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix",
+    "*.{json,jsonc,md,yml,yaml}": [
+      "prettier --write --ignore-unknown",
+      "pnpm check:spelling"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.6",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@mcdougald/eslint-config": "workspace:*",
+    "@mcdougald/prettier-config": "workspace:*",
+    "@mcdougald/typescript-config": "workspace:*",
+    "@types/node": "^22.18.0",
+    "cspell": "^9.2.0",
+    "czg": "^1.12.0",
+    "eslint": "^9.34.0",
+    "husky": "^9.1.7",
+    "knip": "^5.63.0",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.19",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=22"
+  }
+}

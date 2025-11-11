@@ -1,0 +1,56 @@
+{
+  "name": "@mcdougald/prettier-config",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mcdougald/configs/blob/main/packages/prettier-config/README.md",
+  "bugs": {
+    "url": "https://github.com/mcdougald/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcdougald/config.git",
+    "directory": "packages/prettier-config"
+  },
+  "keywords": [
+    "prettier",
+    "prettier-config",
+    "prettier-config",
+    "packagejson",
+    "prettier-plugin-packagejson",
+    "mcdougald"
+  ],
+  "license": "MIT",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rm -rf .turbo dist",
+    "dev": "tsdown --watch",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  },
+  "devDependencies": {
+    "@mcdougald/eslint-config": "workspace:*",
+    "@mcdougald/typescript-config": "workspace:*",
+    "@types/node": "^22.18.0",
+    "prettier": "^3.6.2",
+    "tsdown": "^0.14.2"
+  },
+  "peerDependencies": {
+    "prettier": ">=3.6.0",
+    "prettier-plugin-packagejson": ">=2.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

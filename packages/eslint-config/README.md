@@ -1,0 +1,47 @@
+# @mcdougald/eslint-config
+
+Personal ESLint configurations for Trevor McDougald's projects.
+
+## Installation
+
+```bash
+npm i -D @mcdougald/eslint-config
+```
+
+Create an `eslint.config.ts` file with the following content:
+
+```js
+import { defineConfig } from '@mcdougald/eslint-config'
+
+export default defineConfig({
+  // Custom ESLint configuration options
+})
+```
+
+### Options
+
+```ts
+type Options = {
+  // Required
+  // The root directory of the TypeScript configuration
+  tsconfigRootDir: string
+  // Optional
+  // Enable React specific linting rules
+  react?: boolean
+  // Optional
+  // Enable Next.js specific linting rules
+  nextjs?: boolean
+  // Optional
+  // Specify the entry point for Tailwind CSS (also enable ESLint rules for tailwindcss)
+  tailwindEntryPoint?: string
+  // Optional
+  // Specify glob patterns for Vitest (also enable ESLint rules for vitest)
+  vitestGlob?: string
+  // Optional
+  // Specify glob patterns for Playwright (also enable ESLint rules for playwright)
+  playwrightGlob?: string
+  // Optional
+  // Specify files to ignore
+  ignores?: string[]
+}
+```

@@ -1,0 +1,100 @@
+{
+  "$schema": "../node_modules/@biomejs/biome/configuration_schema.json",
+  "linter": {
+    "domains": {
+      "project": "recommended"
+    },
+    "enabled": true,
+    "rules": {
+      /* rules focused on preventing accessibility problems */
+      "a11y": {
+        "useButtonType": "warn" // ultra-strict rule
+      },
+
+      /* rules that focus on inspecting complex code that could be simplified. */
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off", // when code do smell, clean up the spell.
+        /* React */
+        "noUselessFragments": "error"
+      },
+
+      /* rules that detect code that is guaranteed to be incorrect or useless. */
+      "correctness": {
+        "noUnusedVariables": {
+          "level": "warn",
+          "fix": "none" // do not let biome fix unused variables by prefixing with _ — review and handle these manually
+        },
+        "noUndeclaredDependencies": "error",
+
+        /* React */
+        "noRenderReturnValue": "error",
+        "useHookAtTopLevel": "error",
+        "useExhaustiveDependencies": {
+          /* handle useEffect manually */
+          "fix": "none",
+          "level": "warn"
+        },
+        "useJsxKeyInIterable": {
+          "level": "error",
+          "options": { "checkShorthandFragments": true }
+        },
+        "noChildrenProp": "warn",
+        "noVoidElementsWithChildren": "error"
+      },
+
+      /* rules under development */
+      "nursery": {
+        "noUnknownAtRule": "off", // ultra-strict rule — there are too much custom at-rules from tailwind. review this rule when it will go out from nursery.
+
+        /* React */
+        "useUniqueElementIds": "off", // TODO it is useful — fix and enable
+        "noReactPropAssign": "error",
+        "noNestedComponentDefinitions": "error",
+        "noNonInteractiveElementInteractions": "error"
+      },
+
+      /* rules catching ways your code could be written to run faster, or generally be more efficient. */
+      "performance": {
+        "noNamespaceImport": "off" // ultra-strict rule — namespace imports are useful. rely on your own feel when to use it.
+      },
+
+      /* rules that detect ways your code could be exploited or lead to security vulnerabilities. */
+      "security": {
+        /* React */
+        "noBlankTarget": "error",
+        "noDangerouslySetInnerHtml": "info",
+        "noDangerouslySetInnerHtmlWithChildren": "info"
+      },
+
+      /* rules enforcing a consistent and idiomatic way of writing your code. By default, these rules will only generate warnings instead of errors. */
+      "style": {
+        "noDefaultExport": "error", // ultra-strict rule — exterminate all default exports.
+        "useFileNamingConvention": "off", // ultra-strict rule — move to kebab-case later.
+        "useBlockStatements": "off", // ultra-strict rule — sometimes if-one-liners are pretty.
+
+        /* React */
+        "useComponentExportOnlyModules": "off", // TODO thus rule is probably useful — review it and enable
+        "noImplicitBoolean": "off", // shorthand boolean props are actually cool
+        "useConsistentCurlyBraces": "warn",
+        "useFragmentSyntax": "info"
+      },
+
+      /* rules that detect code that is likely to be incorrect or useless. */
+      "suspicious": {
+        "noConsole": {
+          // ultra-strict rule — lint for console.log only, allow everything else
+          "level": "warn",
+          "options": {
+            "allow": ["assert", "error", "info", "warn"]
+          }
+        },
+
+        /* React */
+        "noArrayIndexKey": "error",
+        "noDuplicateJsxProps": "error",
+        "noSuspiciousSemicolonInJsx": "error",
+        "noCommentText": "error"
+      }
+    }
+  }
+}

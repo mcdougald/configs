@@ -1,0 +1,64 @@
+{
+	"name": "@mcdougald/tailwindcss-config",
+	"version": "0.1.2",
+	"description": "A comprehensive Tailwind CSS configuration with modern plugins and utilities for React applications",
+	"keywords": [
+		"tailwindcss",
+		"tailwind",
+		"config",
+		"tailwind-config",
+		"css",
+		"styling",
+		"react",
+		"nextjs",
+		"mcdougald"
+	],
+	"homepage": "https://github.com/mcdougald/configs/blob/main/packages/tailwindcss-config/README.md",
+	"bugs": {
+		"url": "https://github.com/mcdougald/configs/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mcdougald/config.git",
+		"directory": "packages/tailwindcss-config"
+	},
+	"license": "MIT",
+	"author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
+	"sideEffects": false,
+	"main": "index.js",
+	"source": "index.js",
+	"types": "index.d.ts",
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"dependencies": {
+		"@tailwindcss/aspect-ratio": "0.4.2",
+		"@tailwindcss/forms": "0.5.10",
+		"@tailwindcss/typography": "0.5.18",
+		"tailwindcss-animate": "1.0.7",
+		"tailwindcss-motion": "1.1.1"
+	},
+	"devDependencies": {
+		"@mcdougald/eslint-config": "workspace:*",
+		"@mcdougald/typescript-config": "workspace:*",
+		"@types/node": "^24.5.2",
+		"eslint": "^9.36.0",
+		"tailwindcss": "4.1.13",
+		"typescript": "^5.9.2"
+	},
+	"peerDependencies": {
+		"tailwindcss": "4.1.13"
+	},
+	"scripts": {
+		"lint": "eslint . --max-warnings 0",
+		"lint:fix": "eslint --fix .",
+		"type-check": "tsc --noEmit"
+	},
+	"lint-staged": {
+		"*.{js,ts}": "eslint --fix"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

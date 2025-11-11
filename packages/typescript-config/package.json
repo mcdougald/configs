@@ -1,0 +1,33 @@
+{
+  "name": "@mcdougald/typescript-config",
+  "version": "0.0.3",
+  "keywords": [
+    "typescript",
+    "tsconfig",
+    "typescript-config",
+    "nextjs",
+    "react",
+    "react-library",
+    "base",
+    "mcdougald"
+  ],
+  "homepage": "https://github.com/mcdougald/configs/blob/main/packages/typescript-config/README.md",
+  "bugs": {
+    "url": "https://github.com/mcdougald/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcdougald/config.git",
+    "directory": "packages/typescript-config"
+  },
+  "license": "MIT",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
+  "files": [
+    "./base.json",
+    "./nextjs.json",
+    "./react-library.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

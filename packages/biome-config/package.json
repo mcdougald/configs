@@ -1,0 +1,45 @@
+{
+  "name": "@mcdougald/biome-config",
+  "version": "0.0.0",
+  "private": true,
+  "keywords": [
+    "biome",
+    "biome-config",
+    "formatter",
+    "linter",
+    "nextjs",
+    "react",
+    "library",
+    "mcdougald"
+  ],
+  "homepage": "https://github.com/mcdougald/configs/blob/main/packages/biome-config/README.md",
+  "bugs": {
+    "url": "https://github.com/mcdougald/configs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcdougald/config.git",
+    "directory": "packages/biome-config"
+  },
+  "license": "MIT",
+  "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
+  "exports": {
+    "./formatter": "./formatter.jsonc",
+    "./library": "./library.json",
+    "./linter": "./linter.jsonc",
+    "./next": "./next.json",
+    "./overrides": "./overrides.jsonc",
+    "./react-internal": "./react-internal.json"
+  },
+  "files": [
+    "formatter.jsonc",
+    "library.json",
+    "linter.jsonc",
+    "next.json",
+    "overrides.jsonc",
+    "react-internal.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

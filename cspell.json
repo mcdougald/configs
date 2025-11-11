@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "dictionaries": ["npm"],
+  "files": ["**/*.{js,ts,json,jsonc,md,yml,yaml}"],
+  "ignorePaths": ["pnpm-lock.yaml", ".idea/**", ".husky/**", ".turbo/**", "dist/**", "node_modules/**", "*.log"],
+  "useGitignore": true,
+  "version": "0.2",
+  "words": [
+    "commitlint",
+    "dblink",
+    "DBLINK",
+    "fileurl",
+    "knip",
+    "mcdougald",
+    "nelsonlaidev",
+    "packagejson",
+    "rerunnable",
+    "sonarjs",
+    "sxzz",
+    "tsdown",
+    "trev",
+    "trevormcdougald",
+    "vitest"
+  ]
+}
