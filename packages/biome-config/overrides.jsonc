@@ -1,4 +1,5 @@
 {
+  "$schema": "https://biomejs.dev/schemas/2.3.6/schema.json",
   "overrides": [
     // do not sort special files — they are better to organize manually
     {
