@@ -42,13 +42,13 @@
 	"devDependencies": {
 		"@mcdougald/eslint-config": "workspace:*",
 		"@mcdougald/typescript-config": "workspace:*",
-		"@types/node": "^24.5.2",
-		"eslint": "^9.36.0",
-		"tailwindcss": "4.1.13",
-		"typescript": "^5.9.2"
+		"@types/node": "^22.19.0",
+		"eslint": "^9.39.4",
+		"tailwindcss": "4.2.2",
+		"typescript": "^6.0.2"
 	},
 	"peerDependencies": {
-		"tailwindcss": "4.1.13"
+		"tailwindcss": "4.2.2"
 	},
 	"scripts": {
 		"lint": "eslint . --max-warnings 0",

@@ -42,8 +42,8 @@
   "devDependencies": {
     "@mcdougald/eslint-config": "workspace:*",
     "@mcdougald/typescript-config": "workspace:*",
-    "@types/node": "^22.18.0",
-    "prettier": "^3.6.2",
+    "@types/node": "^22.19.0",
+    "prettier": "^3.8.1",
     "tsdown": "^0.14.2"
   },
   "peerDependencies": {
