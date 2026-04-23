@@ -4,9 +4,9 @@
  *
  * - eslint-plugin-eslint-comments: missing types
  * - eslint-plugin-jsx-a11y: missing types
- * - @next/eslint-plugin-next: incompatible types
- * - @vitest/eslint-plugin: incompatible types
- * - @eslint-react/eslint-plugin: incompatible types
+ * - `@next/eslint-plugin-next`: incompatible types
+ * - `@vitest/eslint-plugin`: incompatible types
+ * - `@eslint-react/eslint-plugin`: incompatible types
  * - eslint-plugin-better-tailwindcss: incompatible types
  */
 declare module '@eslint-community/eslint-plugin-eslint-comments' {

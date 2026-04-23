@@ -1,6 +1,6 @@
 {
   "name": "@mcdougald/typescript-config",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "keywords": [
     "typescript",
     "tsconfig",
@@ -31,7 +31,7 @@
     "typescript": ">=5.9.0"
   },
   "devDependencies": {
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "publishConfig": {
     "access": "public"

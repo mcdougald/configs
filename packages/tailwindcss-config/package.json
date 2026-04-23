@@ -1,6 +1,6 @@
 {
 	"name": "@mcdougald/tailwindcss-config",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "A comprehensive Tailwind CSS configuration with modern plugins and utilities for React applications",
 	"keywords": [
 		"tailwindcss",

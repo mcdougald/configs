@@ -1,6 +1,7 @@
 {
   "name": "@mcdougald/hooks",
   "version": "0.0.1",
+  "private": true,
   "description": "A growing collection of reusable React hooks for personal and open-source projects.",
   "keywords": [
     "react",
@@ -58,9 +59,6 @@
     "react-dom": "^19.2.4",
     "tsdown": "^0.14.2",
     "typescript": "^6.0.2"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.13.0",

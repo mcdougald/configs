@@ -1,7 +1,7 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
 import { GLOB_SRC } from '../globs'
-import { reactHooksPlugin, reactPlugin } from '../plugins'
+import { reactHooksConfigs, reactHooksPlugin, reactPlugin } from '../plugins'
 
 export const react = (overrides?: RuleOverrides): FlatConfig[] => [
   {
@@ -13,14 +13,12 @@ export const react = (overrides?: RuleOverrides): FlatConfig[] => [
     },
     rules: {
       ...reactPlugin.configs.all.rules,
-      ...reactHooksPlugin.configs['recommended-latest'].rules,
+      ...reactHooksConfigs['recommended-latest'].rules,
 
-      '@eslint-react/naming-convention/filename': ['error', 'kebab-case'],
+      // `@eslint-react/naming-convention/filename` was removed in v2+. Use
+      // `unicorn/filename-case` from the unicorn config for filename linting.
 
       // Unnecessary
-      '@eslint-react/avoid-shorthand-boolean': 'off',
-      '@eslint-react/avoid-shorthand-fragment': 'off',
-      '@eslint-react/no-complex-conditional-rendering': 'off',
       '@eslint-react/no-array-index-key': 'off',
 
       ...overrides
