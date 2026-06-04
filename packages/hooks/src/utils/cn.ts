@@ -19,7 +19,9 @@ export type ComponentAnatomy<T extends Anatomy> = {
 }
 
 /**
- * @param config
+ * Returns the provided style anatomy definition unchanged, with full type inference.
+ * @param {A} config - The style anatomy definition (a record of `cva` instances).
+ * @returns {A} The same anatomy definition that was passed in.
  * @example
  * const ComponentAnatomy = defineStyleAnatomy({
  *    label: cva(null, {
@@ -51,16 +53,18 @@ export function defineStyleAnatomy<A extends Anatomy = Anatomy>(config: A) {
 }
 
 /**
- *
- * @param {...any} inputs
+ * Merges class names with `clsx` and resolves Tailwind conflicts with `twMerge`.
+ * @param {...ClassValue} inputs - The class values to merge.
+ * @returns {string} The merged, conflict-resolved class string.
  */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
 /**
- *
- * @param {...any} inputs
+ * Merges class names with `clsx` without Tailwind conflict resolution.
+ * @param {...ClassValue} inputs - The class values to merge.
+ * @returns {string} The merged class string.
  */
 export function cx(...inputs: ClassValue[]) {
   return clsx(...inputs)
@@ -68,8 +72,8 @@ export function cx(...inputs: ClassValue[]) {
 
 /**
  * Checks if the given element is a React element.
- * @param element - The element to check.
- * @returns Whether the element is a React element.
+ * @param {ReactNode} element - The element to check.
+ * @returns {boolean} Whether the element is a React element.
  */
 export const isReactElement = (element: ReactNode): element is ReactElement => {
   return isValidElement(element)
@@ -78,8 +82,8 @@ export const isReactElement = (element: ReactNode): element is ReactElement => {
 /**
  * Typeguard function that checks if the given element is a
  * React element with a className prop.
- * @param element
- * @returns Whether the element is a React element with a className prop.
+ * @param {ReactNode} element - The element to check.
+ * @returns {boolean} Whether the element is a React element with a className prop.
  */
 export const isElementWithClassName = (element: ReactNode): element is ReactElement<{ className?: string }> => {
   return (
@@ -90,8 +94,8 @@ export const isElementWithClassName = (element: ReactNode): element is ReactElem
 /**
  * Typeguard function that checks if the given element is a
  * React element with a children prop.
- * @param element
- * @returns Whether the element is a React element with a children prop.
+ * @param {ReactNode} element - The element to check.
+ * @returns {boolean} Whether the element is a React element with a children prop.
  */
 export const isElementWithChildren = (element: ReactNode): element is ReactElement<{ children?: ReactNode }> => {
   return isValidElement(element) && (element as ReactElement<{ children?: ReactNode }>).props.children !== undefined

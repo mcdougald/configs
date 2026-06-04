@@ -13,10 +13,12 @@ export const useDeviceDetect = (): DeviceDetect => {
   const [isMobileViewport, setIsMobileViewport] = useState(false)
 
   const onWindowSizeChanged = useCallback(() => {
+    // eslint-disable-next-line @eslint-react/set-state-in-effect -- intentional: resize handler must sync viewport state from the browser window
     setIsMobileViewport(window.innerWidth < 640)
   }, [])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: must read initial window size after mount to detect viewport
     onWindowSizeChanged()
     window.addEventListener('resize', onWindowSizeChanged, true)
 
@@ -32,14 +34,14 @@ export const useDeviceDetect = (): DeviceDetect => {
 }
 
 const detectDevice = (userAgent: string) => {
-  const isAndroid = (): boolean => Boolean(/Android/i.test(userAgent))
-  const isIos = (): boolean => Boolean(/iPhone|iPad|iPod/i.test(userAgent))
-  const isOpera = (): boolean => Boolean(/Opera Mini/i.test(userAgent))
-  const isWindows = (): boolean => Boolean(/IEMobile/i.test(userAgent))
-  const isSSR = (): boolean => Boolean(/SSR/i.test(userAgent))
+  const isAndroid = (): boolean => /Android/i.test(userAgent)
+  const isIos = (): boolean => /iPhone|iPad|iPod/i.test(userAgent)
+  const isOpera = (): boolean => /Opera Mini/i.test(userAgent)
+  const isWindows = (): boolean => /IEMobile/i.test(userAgent)
+  const isSSR = (): boolean => /SSR/i.test(userAgent)
 
-  const isMobile = (): boolean => Boolean(isAndroid() || isIos() || isOpera() || isWindows())
-  const isDesktop = (): boolean => Boolean(!isMobile() && !isSSR())
+  const isMobile = (): boolean => isAndroid() || isIos() || isOpera() || isWindows()
+  const isDesktop = (): boolean => !isMobile() && !isSSR()
   return {
     isMobile,
     isDesktop,

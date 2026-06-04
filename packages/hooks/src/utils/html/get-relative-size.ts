@@ -1,7 +1,5 @@
 import { clamp, isNaN } from 'lodash-es'
 
-type SizeProp = string
-
 export const getRelativeElementData = <T extends string>(delta: number, options: RelativeElementOptions<T>) => {
   const { minElement, maxElement, elements = [] } = options
 
@@ -124,7 +122,7 @@ export const getRelativeSizePropData = (
       elementDeltaString: sizeDeltaString
     },
     ...rest
-  } = getRelativeElementData<SizeProp>(sizeChange, {
+  } = getRelativeElementData<string>(sizeChange, {
     elements: sizes,
     relativeElement: relativeSize,
     minElement: minSize,
@@ -150,8 +148,9 @@ export const getRelativeSizePropData = (
 
 /**
  * Get a size property relative to another size property
- * @param sizeChange
- * @param options
+ * @param {number} sizeChange - The number the relative size is incremented or decremented by.
+ * @param {RelativeSizePropDataOptions} options - The relative size configuration (sizes, min, max, relative).
+ * @returns {string} The resolved size property after applying the change.
  * @example
  *
  * const size = getRelativeSizeProp(-10, {relativeSize: "lg", minSize: "sm", maxSize: "lg"})
@@ -172,5 +171,5 @@ interface RelativeElementOptions<T extends string = string> {
   elements?: T[]
   maxElement?: T
   minElement?: T
-  relativeElement?: T | undefined
+  relativeElement?: T
 }

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 
 /**
- *
- * @param value
- * @param delay
+ * Returns a debounced copy of a value that only updates after the value has
+ * stopped changing for the given delay.
+ * @template T
+ * @param {T} value - The value to debounce.
+ * @param {number} delay - The debounce delay in milliseconds.
+ * @returns {T} The debounced value.
  */
-export function useDebounce(value: any, delay: number) {
+export function useDebounce<T>(value: T, delay: number): T {
   // State and setters for debounced value
 
   const [debouncedValue, setDebouncedValue] = useState(value)
@@ -24,6 +27,6 @@ export function useDebounce(value: any, delay: number) {
     },
     [value, delay] // Only re-call effect if value or delay changes
   )
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+
   return debouncedValue
 }

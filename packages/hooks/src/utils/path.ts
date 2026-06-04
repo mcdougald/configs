@@ -1,6 +1,7 @@
 /**
  * Split path into segments, trailing/leading slashes are removed
- * @param path
+ * @param {string} path - The path to split.
+ * @returns {string[]} The non-empty path segments.
  */
 export function splitPath(path: string): string[] {
   return path.split('/').filter((p) => p.length > 0)
@@ -8,8 +9,9 @@ export function splitPath(path: string): string[] {
 
 /**
  * Resolve paths, slashes within the path will be ignored
- * @param from - Path to resolve from
- * @param join - Paths to resolve
+ * @param {string} from - Path to resolve from.
+ * @param {string} join - Path to resolve.
+ * @returns {string} The resolved path.
  * @example
  * ```
  * ['a','b'] // 'a/b'
@@ -23,7 +25,8 @@ export function resolvePath(from: string, join: string): string {
     v2 = splitPath(join)
 
   while (v2.length > 0) {
-    switch (v2[0]) {
+    const segment = v2[0]
+    switch (segment) {
       case '.': {
         break
       }
@@ -32,8 +35,9 @@ export function resolvePath(from: string, join: string): string {
         break
       }
       default: {
-        // @ts-ignore
-        v1.push(v2[0])
+        if (segment !== undefined) {
+          v1.push(segment)
+        }
       }
     }
 
@@ -44,8 +48,9 @@ export function resolvePath(from: string, join: string): string {
 }
 
 /**
- *
- * @param path
+ * Converts Windows-style backslashes to forward slashes, leaving extended-length paths untouched.
+ * @param {string} path - The path to normalize.
+ * @returns {string} The path with backslashes replaced by forward slashes.
  */
 export function slash(path: string): string {
   const isExtendedLengthPath = path.startsWith('\\\\?\\')

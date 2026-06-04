@@ -3,14 +3,15 @@ import { useMediaQuery } from 'react-responsive'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 /**
- *
- * @param breakpointKey
+ * React hook that reports whether the viewport currently matches a Tailwind breakpoint.
+ * @param {K} breakpointKey - The Tailwind breakpoint key (e.g. `'sm'`, `'md'`) to match against.
+ * @returns {Record<`is${Capitalize<K>}`, boolean>} An object whose single `is{Breakpoint}` key is `true` when the media query matches.
  */
 export function useBreakpoint<K extends keyof typeof defaultTheme.screens>(breakpointKey: K) {
   const bool = useMediaQuery({
     query: `(min-width: ${defaultTheme.screens[breakpointKey]})`
   })
-  const capitalizedKey = breakpointKey?.[0]?.toUpperCase() + breakpointKey.slice(1)
+  const capitalizedKey = breakpointKey[0].toUpperCase() + breakpointKey.slice(1)
   type Key = `is${Capitalize<K>}`
   return {
     [`is${capitalizedKey}`]: bool

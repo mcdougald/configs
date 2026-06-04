@@ -10,15 +10,16 @@ import type {
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 /**
+ * Creates a mutation that optimistically updates the react-query cache for a
+ * given key and rolls back the change if the mutation fails.
+ *
  * Ripped from https://github.com/sub-t/next-session-auth/blob/7cd0955af2d2d29ade553e07f5f5105681c812d5/src/features/posts/api/deletePost.ts
- * @param mutationKey
- * @param mutationKey.mutationKey
- * @param mutationFn
- * @param mutationKey.mutationFn
- * @param updateFn
- * @param mutationKey.updateFn
- * @param config
- * @param mutationKey.config
+ * @param {object} params - The options object.
+ * @param {MutationKey} params.mutationKey - The mutation/query key whose cached data is optimistically updated.
+ * @param {MutationFunction<TData, TVariables>} params.mutationFn - The function performing the mutation.
+ * @param {(previousData: TContext, variables: TVariables) => TContext} params.updateFn - Computes the new cached value from the previous data and the mutation variables.
+ * @param {Omit<UseMutationOptions<TData, TError, TVariables, TContext>, 'onError' | 'onMutate' | 'onSuccess'>} [params.config] - Additional mutation options merged into the mutation.
+ * @returns {ReturnType<typeof useMutation<TData, TError, TVariables, TContext | undefined>>} The react-query mutation result.
  */
 const useOptimisticMutation = <TData = unknown, TError = unknown, TVariables = void, TContext = unknown>({
   mutationKey,
@@ -29,7 +30,7 @@ const useOptimisticMutation = <TData = unknown, TError = unknown, TVariables = v
   config?: Omit<UseMutationOptions<TData, TError, TVariables, TContext>, 'onError' | 'onMutate' | 'onSuccess'>
   mutationFn: MutationFunction<TData, TVariables>
   mutationKey: MutationKey
-  updateFn: (previousData: TContext, variables: TVariables) => any
+  updateFn: (previousData: TContext, variables: TVariables) => TContext
 }) => {
   const queryClient = useQueryClient()
 

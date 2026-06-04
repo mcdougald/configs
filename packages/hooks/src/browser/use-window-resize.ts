@@ -8,6 +8,7 @@ export const useWindowResize = (): number[] => {
      *
      */
     function updateSize() {
+      // eslint-disable-next-line @eslint-react/set-state-in-effect -- intentional: resize handler must sync size state from the browser window
       setSize([window.innerWidth, window.innerHeight])
     }
 

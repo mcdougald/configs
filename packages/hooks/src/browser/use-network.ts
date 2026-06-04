@@ -2,26 +2,21 @@ import { useEffect, useState } from 'react'
 
 type ConnectionType = 'bluetooth' | 'cellular' | 'ethernet' | 'mixed' | 'none' | 'other' | 'unknown' | 'wifi' | 'wimax'
 
-// http://wicg.github.io/netinfo/#dom-megabit
-type Megabit = number
-// http://wicg.github.io/netinfo/#dom-millisecond
-type Millisecond = number
-
 // http://wicg.github.io/netinfo/#effectiveconnectiontype-enum
 type EffectiveConnectionType = '2g' | '3g' | '4g' | 'slow-2g'
 
 // http://wicg.github.io/netinfo/#networkinformation-interface
 interface NetworkInformation extends EventTarget {
-  // http://wicg.github.io/netinfo/#downlink-attribute
-  readonly downlink?: Megabit
-  // http://wicg.github.io/netinfo/#downlinkmax-attribute
-  readonly downlinkMax?: Megabit
+  // http://wicg.github.io/netinfo/#downlink-attribute (megabits)
+  readonly downlink?: number
+  // http://wicg.github.io/netinfo/#downlinkmax-attribute (megabits)
+  readonly downlinkMax?: number
   // http://wicg.github.io/netinfo/#effectivetype-attribute
   readonly effectiveType?: EffectiveConnectionType
   // http://wicg.github.io/netinfo/#handling-changes-to-the-underlying-connection
   onchange?: EventListener
-  // http://wicg.github.io/netinfo/#rtt-attribute
-  readonly rtt?: Millisecond
+  // http://wicg.github.io/netinfo/#rtt-attribute (milliseconds)
+  readonly rtt?: number
   // http://wicg.github.io/netinfo/#savedata-attribute
   readonly saveData?: boolean
   // http://wicg.github.io/netinfo/#type-attribute
@@ -36,35 +31,32 @@ interface NetworkState {
   rtt?: number
   saveData?: boolean
   since?: Date
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   type?: ConnectionType
 }
 
+const getNetworkConnection = (): NetworkInformation | undefined => {
+  // `navigator.connection` is part of the Network Information API but is not in the standard DOM lib types.
+  const nav = navigator as Navigator & { connection?: NetworkInformation }
+  return nav.connection ?? undefined
+}
+
+const getNetworkConnectionInfo = (): Pick<
+  NetworkInformation,
+  'downlink' | 'downlinkMax' | 'effectiveType' | 'rtt' | 'saveData' | 'type'
+> => {
+  const connection: NetworkInformation | undefined = getNetworkConnection()
+
+  return {
+    rtt: connection?.rtt,
+    type: connection?.type,
+    saveData: connection?.saveData,
+    downlink: connection?.downlink,
+    downlinkMax: connection?.downlinkMax,
+    effectiveType: connection?.effectiveType
+  }
+}
+
 export const useNetwork = (): NetworkState => {
-  const getNetworkConnection = (): NetworkInformation | undefined => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return navigator.connection ?? undefined
-  }
-
-  const getNetworkConnectionInfo = (): Pick<
-    NetworkInformation,
-    'downlink' | 'downlinkMax' | 'effectiveType' | 'rtt' | 'saveData' | 'type'
-  > => {
-    const connection: NetworkInformation | undefined = getNetworkConnection()
-
-    return {
-      rtt: connection?.rtt,
-      type: connection?.type,
-      saveData: connection?.saveData,
-      downlink: connection?.downlink,
-      downlinkMax: connection?.downlinkMax,
-      effectiveType: connection?.effectiveType
-    }
-  }
-
   const [state, setState] = useState<NetworkState>(() => {
     return {
       since: undefined,

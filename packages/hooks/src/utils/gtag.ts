@@ -7,9 +7,9 @@ declare global {
 }
 
 export const gtagEvent = (...args: GtagEventArgs) => {
-  if (globalThis.window === undefined || typeof globalThis.gtag !== 'function') {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
     return
   }
 
-  globalThis.gtag(...args)
+  window.gtag(...args)
 }

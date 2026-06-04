@@ -15,8 +15,9 @@ export interface OverflowData {
 }
 
 /**
- *
- * @param elementRef
+ * Computes overflow and scroll-boundary information for an element or ref.
+ * @param {HTMLElement | null | RefObject<HTMLElement>} elementRef - The element or ref to inspect.
+ * @returns {OverflowData} Overflow flags and scroll-boundary state for the element.
  */
 export function getOverflowData(elementRef?: HTMLElement | null | RefObject<HTMLElement>): OverflowData {
   const element = getElement(elementRef)

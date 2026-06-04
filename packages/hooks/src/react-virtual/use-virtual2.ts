@@ -8,8 +8,8 @@ export type ScrollAlignment = 'auto' | 'center' | 'end' | 'start'
 export interface ScrollToOptions {
   align: ScrollAlignment
 }
-export interface ScrollToOffsetOptions extends ScrollToOptions {}
-export interface ScrollToIndexOptions extends ScrollToOptions {}
+export type ScrollToOffsetOptions = ScrollToOptions
+export type ScrollToIndexOptions = ScrollToOptions
 
 export type Virtualizer = {
   measure: () => void
@@ -21,7 +21,7 @@ export type Virtualizer = {
 
 export type { ScrollToOptions as ReactVirtualScrollToOptions }
 
-// TODO Options type should be exported from react-virtual to replace this
+// NOTE: derived locally because react-virtual does not export its Options type.
 type ReactVirtualOptions<T> = Parameters<typeof useVirtualImpl>[0] & {
   parentRef: RefObject<T> // this override is needed because Parameters<> cannot handle generics
   scrollToIndex: (index: number, options?: ScrollToOptions) => void
@@ -47,7 +47,7 @@ Options<T>): Virtualizer => {
 
   const update = (key: number | string, el: HTMLElement) => {
     if (updateSize) {
-      measureRefCacheRef?.current?.[key]?.(el)
+      measureRefCacheRef.current[key]?.(el)
     }
   }
   const updateRef = useRef(update)
@@ -74,7 +74,7 @@ Options<T>): Virtualizer => {
   useEffect(() => {
     const ro = roRef.current
     return () => {
-      ro?.disconnect()
+      ro.disconnect()
     }
   }, [])
 
@@ -82,15 +82,16 @@ Options<T>): Virtualizer => {
 
   const cachedMeasureRefWrappers = useMemo(() => {
     const makeMeasureRefWrapperForItem = (key: number | string) => (el: HTMLElement | null) => {
-      if (elCacheRef.current[key]) {
-        roRef.current?.unobserve(elCacheRef.current[key])
+      const existing = elCacheRef.current[key]
+      if (existing) {
+        roRef.current.unobserve(existing)
       }
 
       if (el) {
         // sync
         updateRef.current(key, el)
         // observe
-        roRef.current?.observe(el)
+        roRef.current.observe(el)
       }
 
       elCacheRef.current[key] = el

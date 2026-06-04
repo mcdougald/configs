@@ -1,11 +1,15 @@
 export const getRandomColor = () => {
+  // eslint-disable-next-line sonarjs/pseudo-random -- cosmetic color generation, not security-sensitive
   const random = (Math.random() * 0xf_ff_ff * 1_000_000).toString(16)
   return `#${random.slice(0, 6)}`
 }
 
 export const getRandomColorInHSL = () => {
+  // eslint-disable-next-line sonarjs/pseudo-random -- cosmetic color generation, not security-sensitive
   const hue = Math.floor(Math.random() * 360)
+  // eslint-disable-next-line sonarjs/pseudo-random -- cosmetic color generation, not security-sensitive
   const saturation = 70 + Math.floor(Math.random() * 30) // 70% ~ 100%
+  // eslint-disable-next-line sonarjs/pseudo-random -- cosmetic color generation, not security-sensitive
   const lightness = 50 + Math.floor(Math.random() * 20) // 50% ~ 70%
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`
 }
@@ -14,10 +18,7 @@ export const getLuminanceByBT709 = (hexColor: string) => {
   hexColor = hexColor.replace(/^#/, '')
   // 3자리 16진수인 경우를 처리
   if (hexColor.length === 3) {
-    hexColor = hexColor
-      .split('')
-      .map((char) => char + char)
-      .join('')
+    hexColor = [...hexColor].map((char) => char + char).join('')
   }
   const r = Number.parseInt(hexColor.slice(0, 2), 16)
   const g = Number.parseInt(hexColor.slice(2, 4), 16)
@@ -52,12 +53,14 @@ export const getDarkenHexColor = (hexColor: string, amount = 0.2) => {
 }
 
 /**
- *
- * @param input
+ * Deterministically derives a hex color from an arbitrary string.
+ * @param {string} input - The string to derive a color from.
+ * @returns {string} A hex color string (e.g. `#a1b2c3`).
  */
 export function getColorByString(input: string): string {
   let hash = 0
   for (let i = 0; i < input.length; i++) {
+    // eslint-disable-next-line unicorn/prefer-code-point -- per-UTF-16-unit hashing must be preserved for stable color output
     hash = input.charCodeAt(i) + ((hash << 5) - hash)
   }
 

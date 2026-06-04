@@ -29,9 +29,11 @@ const defaultOptions: Required<UseSoundOptions> = {
 }
 
 /**
- *
- * @param file
- * @param options
+ * Loads an audio file and returns imperative play and stop controls, with optional
+ * autoplay, looping, volume, and delay.
+ * @param {string} file - The URL or path of the audio file to play.
+ * @param {UseSoundOptions} [options] - Playback options (volume, loop, delay, autoPlay).
+ * @returns {{ play: () => void; stop: () => void }} Imperative handlers to play and stop the sound.
  */
 export function useSound(file: string, options: UseSoundOptions = {}) {
   const { delay, volume, loop, autoPlay } = {
@@ -66,7 +68,7 @@ export function useSound(file: string, options: UseSoundOptions = {}) {
       if (!audioRef.current) return
       audioRef.current.volume = volume
       audioRef.current.loop = loop
-      audioRef.current.play().catch((error) => {
+      audioRef.current.play().catch((error: unknown) => {
         console.error('Error playing audio:', error)
       })
     }
