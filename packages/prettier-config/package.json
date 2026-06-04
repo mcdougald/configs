@@ -22,8 +22,8 @@
   "author": "Trevor McDougald <mcdougald.job@gmail.com> (https://github.com/mcdougald/)",
   "type": "module",
   "exports": {
-    "import": "./dist/index.js",
-    "types": "./dist/index.d.ts"
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
   },
   "files": [
     "dist"
@@ -42,9 +42,9 @@
   "devDependencies": {
     "@mcdougald/eslint-config": "workspace:*",
     "@mcdougald/typescript-config": "workspace:*",
-    "@types/node": "^22.19.0",
-    "prettier": "^3.8.1",
-    "tsdown": "^0.14.2"
+    "@types/node": "^25.9.1",
+    "prettier": "^3.8.3",
+    "tsdown": "^0.22.1"
   },
   "peerDependencies": {
     "prettier": ">=3.6.0",

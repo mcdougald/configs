@@ -43,8 +43,8 @@ declare module '@next/eslint-plugin-next' {
 
   const plugin: ESLint.Plugin & {
     configs: {
-      recommended: Linter.Config
       'core-web-vitals': Linter.Config
+      recommended: Linter.Config
     }
   }
 

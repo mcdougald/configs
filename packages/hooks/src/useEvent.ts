@@ -1,15 +1,19 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react'
 
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
+/**
+ *
+ * @param handler
+ */
 export function useEvent<TArgs extends unknown[], TResult>(
-  handler: (...args: TArgs) => TResult,
+  handler: (...args: TArgs) => TResult
 ): (...args: TArgs) => TResult {
-  const handlerRef = useRef(handler);
+  const handlerRef = useRef(handler)
 
   useIsomorphicLayoutEffect(() => {
-    handlerRef.current = handler;
-  });
+    handlerRef.current = handler
+  })
 
-  return useCallback((...args: TArgs) => handlerRef.current(...args), []);
+  return useCallback((...args: TArgs) => handlerRef.current(...args), [])
 }

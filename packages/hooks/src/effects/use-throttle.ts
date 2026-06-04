@@ -1,4 +1,4 @@
-import { type MutableRefObject, useCallback, useEffect, useRef } from 'react';
+import { type MutableRefObject, useCallback, useEffect, useRef } from 'react'
 
 /*
 use：
@@ -10,29 +10,27 @@ or:
 const handleClick = useThrottle(()=>queryUtil(),600)
 */
 const useThrottle = (fn: (args?: any) => void, delay: number, dep = []) => {
-	const {
-		current,
-	}: MutableRefObject<{ valid: boolean; fun: (args?: any) => void }> = useRef({
-		fun: fn,
-		valid: true,
-	});
+  const { current }: MutableRefObject<{ fun: (args?: any) => void; valid: boolean }> = useRef({
+    fun: fn,
+    valid: true
+  })
 
-	useEffect(() => {
-		current.fun = fn;
-	}, [fn]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    current.fun = fn
+  }, [fn]) // eslint-disable-line react-hooks/exhaustive-deps
 
-	return useCallback((args?: any) => {
-		if (!current.valid) {
-			return;
-		}
+  return useCallback((args?: any) => {
+    if (!current.valid) {
+      return
+    }
 
-		current.valid = false;
+    current.valid = false
 
-		window.setTimeout(() => {
-			current.fun(args);
-			current.valid = true;
-		}, delay);
-	}, dep); // eslint-disable-line react-hooks/exhaustive-deps
-};
+    globalThis.setTimeout(() => {
+      current.fun(args)
+      current.valid = true
+    }, delay)
+  }, dep) // eslint-disable-line react-hooks/exhaustive-deps
+}
 
-export default useThrottle;
+export default useThrottle

@@ -1,10 +1,12 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
+import { GLOB_SRC } from '../globs'
 import { importLitePlugin } from '../plugins'
 
 export const imports = (overrides?: RuleOverrides): FlatConfig[] => [
   {
     name: 'mcdougald/imports/rules',
+    files: [GLOB_SRC],
     plugins: {
       'import-lite': importLitePlugin
     },

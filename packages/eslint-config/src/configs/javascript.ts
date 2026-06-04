@@ -3,26 +3,26 @@ import type { FlatConfig, RuleOverrides } from '../types'
 import eslint from '@eslint/js'
 import globals from 'globals'
 
+import { GLOB_SRC } from '../globs'
 import { unusedImportsPlugin } from '../plugins'
 
 export const javascript = (overrides?: RuleOverrides): FlatConfig[] => [
   {
     name: 'mcdougald/javascript/setup',
+    files: [GLOB_SRC],
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: 'latest',
       globals: {
+        // `globals.browser` already provides `document`, `navigator`, `window`, etc.
         ...globals.browser,
-        ...globals.es2021,
-        ...globals.node,
-        document: 'readonly',
-        navigator: 'readonly',
-        window: 'readonly'
+        ...globals.es2025,
+        ...globals.node
       },
       parserOptions: {
         ecmaFeatures: {
           jsx: true
         },
-        ecmaVersion: 2022,
+        ecmaVersion: 'latest',
         sourceType: 'module'
       },
       sourceType: 'module'
@@ -34,6 +34,7 @@ export const javascript = (overrides?: RuleOverrides): FlatConfig[] => [
   },
   {
     name: 'mcdougald/javascript/rules',
+    files: [GLOB_SRC],
     plugins: {
       'unused-imports': unusedImportsPlugin
     },

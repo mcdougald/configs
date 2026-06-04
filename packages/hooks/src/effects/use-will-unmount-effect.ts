@@ -1,13 +1,17 @@
-import { EffectCallback, useEffect, useLayoutEffect } from 'react';
+import { type EffectCallback, useEffect, useLayoutEffect } from 'react'
 
-/** A useEffect which only runs on the cleanup of the last effect */
+/**
+ * A useEffect which only runs on the cleanup of the last effect
+ * @param callback
+ */
 export function useWillUnmountEffect(callback: ReturnType<EffectCallback>) {
-	return useEffect(() => callback, []);
+  useEffect(() => callback, [])
 }
 
-/** A useLayoutEffect which only runs on the cleanup of the last effect */
-export function useWillUnMountLayoutEffect(
-	callback: ReturnType<EffectCallback>,
-) {
-	return useLayoutEffect(() => callback, []);
+/**
+ * A useLayoutEffect which only runs on the cleanup of the last effect
+ * @param callback
+ */
+export function useWillUnMountLayoutEffect(callback: ReturnType<EffectCallback>) {
+  useLayoutEffect(() => callback, [])
 }

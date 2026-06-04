@@ -1,9 +1,12 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
 import { GLOB_SRC } from '../globs'
-import { reactHooksConfigs, reactHooksPlugin, reactPlugin } from '../plugins'
+import { reactHooksConfigs, reactHooksPlugin, reactPlugin, reactYouMightNotNeedAnEffectPlugin } from '../plugins'
 
-export const react = (overrides?: RuleOverrides): FlatConfig[] => [
+export const react = (
+  overrides?: RuleOverrides,
+  reactYouMightNotNeedAnEffectOverrides?: RuleOverrides
+): FlatConfig[] => [
   {
     name: 'mcdougald/react/rules',
     files: [GLOB_SRC],
@@ -22,6 +25,15 @@ export const react = (overrides?: RuleOverrides): FlatConfig[] => [
       '@eslint-react/no-array-index-key': 'off',
 
       ...overrides
+    }
+  },
+  {
+    name: 'mcdougald/react/you-might-not-need-an-effect',
+    ...reactYouMightNotNeedAnEffectPlugin.configs.recommended,
+    files: [GLOB_SRC],
+    rules: {
+      ...reactYouMightNotNeedAnEffectPlugin.configs.recommended.rules,
+      ...reactYouMightNotNeedAnEffectOverrides
     }
   }
 ]

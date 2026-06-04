@@ -1,72 +1,85 @@
-import type { SVGProps, RefObject } from 'react';
+import type { RefObject, SVGProps } from 'react'
 
-export type ReactSvgProps = SVGProps<SVGSVGElement>;
+export type ReactSvgProps = SVGProps<SVGSVGElement>
 
-export type ReactElementOrRef<
-	TElement extends HTMLElement | Element | null = HTMLElement | Element | null,
-> = RefObject<TElement> | TElement | null | undefined;
+export type ReactElementOrRef<TElement extends Element | HTMLElement | null = Element | HTMLElement | null> =
+  | null
+  | RefObject<TElement>
+  | TElement
+  | undefined
 
+/**
+ *
+ * @param element
+ */
 export function elementHasOverflowY(element?: HTMLElement | unknown): boolean {
-	return elementHasOverflow(element).hasOverflowY;
+  return elementHasOverflow(element).hasOverflowY
 }
 
+/**
+ *
+ * @param element
+ */
 export function elementHasOverflowX(element?: HTMLElement | unknown): boolean {
-	return elementHasOverflow(element).hasOverflowX;
+  return elementHasOverflow(element).hasOverflowX
 }
 
+/**
+ *
+ * @param element
+ */
 export function elementHasOverflow(element?: HTMLElement | unknown): {
-	hasOverflowY: boolean;
-	hasOverflowX: boolean;
+  hasOverflowX: boolean
+  hasOverflowY: boolean
 } {
-	const getElement = () => {
-		if (element && typeof element === 'object' && 'current' in element) {
-			return element.current as HTMLElement;
-		}
-		return element;
-	};
+  const getElement = () => {
+    if (element && typeof element === 'object' && 'current' in element) {
+      return element.current as HTMLElement
+    }
+    return element
+  }
 
-	const el = getElement();
+  const el = getElement()
 
-	if (el instanceof HTMLElement) {
-		return {
-			hasOverflowY: el.scrollHeight > el.clientHeight,
-			hasOverflowX: el.scrollWidth > el.clientWidth,
-		};
-	}
-	return { hasOverflowY: false, hasOverflowX: false };
+  if (el instanceof HTMLElement) {
+    return {
+      hasOverflowY: el.scrollHeight > el.clientHeight,
+      hasOverflowX: el.scrollWidth > el.clientWidth
+    }
+  }
+  return { hasOverflowY: false, hasOverflowX: false }
 }
 
-export function calculateOverflow({
-	element,
-}: {
-	element?: HTMLElement | null;
-	width: boolean;
-}): boolean {
-	if (element instanceof HTMLElement) {
-		return (
-			element.scrollHeight > element.clientHeight ||
-			element.scrollWidth > element.clientWidth
-		);
-	}
-	return false;
+/**
+ *
+ * @param root0
+ * @param root0.element
+ * @param root0.width
+ */
+export function calculateOverflow({ element }: { element?: HTMLElement | null; width: boolean }): boolean {
+  if (element instanceof HTMLElement) {
+    return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth
+  }
+  return false
 }
 
-export function getElement<TElement extends HTMLElement | Element | null>(
-	elementOrRef: ReactElementOrRef<TElement>,
-) {
-	if (!elementOrRef) return undefined;
+/**
+ *
+ * @param elementOrRef
+ */
+export function getElement<TElement extends Element | HTMLElement | null>(elementOrRef: ReactElementOrRef<TElement>) {
+  if (!elementOrRef) return
 
-	if (elementOrRef instanceof HTMLElement || elementOrRef instanceof Element) {
-		return elementOrRef;
-	}
+  if (elementOrRef instanceof HTMLElement || elementOrRef instanceof Element) {
+    return elementOrRef
+  }
 
-	return elementOrRef.current;
+  return elementOrRef.current
 }
 
+/**
+ *
+ */
 export default function canUseDom(): boolean {
-	return !!(
-		typeof window !== 'undefined' &&
-		window.document &&
-		window.document.createElement
-	);
+  return !!(globalThis.window !== undefined && globalThis.document && globalThis.document.createElement)
 }

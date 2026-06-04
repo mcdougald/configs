@@ -1,52 +1,50 @@
-'use client';
+'use client'
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
 
 interface DeviceDetect {
-	isMobileUserAgent: boolean;
-	isMobileViewport: boolean;
+  isMobileUserAgent: boolean
+  isMobileViewport: boolean
 }
 
 export const useDeviceDetect = (): DeviceDetect => {
-	const userAgent =
-		typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;
-	const deviceProperties = detectDevice(userAgent);
-	const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent
+  const deviceProperties = detectDevice(userAgent)
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
 
-	const onWindowSizeChanged = useCallback(() => {
-		setIsMobileViewport(window.innerWidth < 640);
-	}, []);
+  const onWindowSizeChanged = useCallback(() => {
+    setIsMobileViewport(window.innerWidth < 640)
+  }, [])
 
-	useEffect(() => {
-		onWindowSizeChanged();
-		window.addEventListener('resize', onWindowSizeChanged, true);
+  useEffect(() => {
+    onWindowSizeChanged()
+    window.addEventListener('resize', onWindowSizeChanged, true)
 
-		return () => {
-			window.removeEventListener('resize', onWindowSizeChanged, true);
-		};
-	}, [onWindowSizeChanged]);
+    return () => {
+      window.removeEventListener('resize', onWindowSizeChanged, true)
+    }
+  }, [onWindowSizeChanged])
 
-	return {
-		isMobileViewport,
-		isMobileUserAgent: deviceProperties.isMobile(),
-	} as DeviceDetect;
-};
+  return {
+    isMobileViewport,
+    isMobileUserAgent: deviceProperties.isMobile()
+  }
+}
 
 const detectDevice = (userAgent: string) => {
-	const isAndroid = (): boolean => Boolean(/Android/i.exec(userAgent));
-	const isIos = (): boolean => Boolean(/iPhone|iPad|iPod/i.exec(userAgent));
-	const isOpera = (): boolean => Boolean(/Opera Mini/i.exec(userAgent));
-	const isWindows = (): boolean => Boolean(/IEMobile/i.exec(userAgent));
-	const isSSR = (): boolean => Boolean(/SSR/i.exec(userAgent));
+  const isAndroid = (): boolean => Boolean(/Android/i.test(userAgent))
+  const isIos = (): boolean => Boolean(/iPhone|iPad|iPod/i.test(userAgent))
+  const isOpera = (): boolean => Boolean(/Opera Mini/i.test(userAgent))
+  const isWindows = (): boolean => Boolean(/IEMobile/i.test(userAgent))
+  const isSSR = (): boolean => Boolean(/SSR/i.test(userAgent))
 
-	const isMobile = (): boolean =>
-		Boolean(isAndroid() || isIos() || isOpera() || isWindows());
-	const isDesktop = (): boolean => Boolean(!isMobile() && !isSSR());
-	return {
-		isMobile,
-		isDesktop,
-		isAndroid,
-		isIos,
-		isSSR,
-	};
-};
+  const isMobile = (): boolean => Boolean(isAndroid() || isIos() || isOpera() || isWindows())
+  const isDesktop = (): boolean => Boolean(!isMobile() && !isSSR())
+  return {
+    isMobile,
+    isDesktop,
+    isAndroid,
+    isIos,
+    isSSR
+  }
+}

@@ -1,23 +1,23 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react'
 
-type QueuedFunction = () => Promise<void>;
+type QueuedFunction = () => Promise<void>
 
 type QueuedTaskOptions = {
-	/**
-	 * A function that is called after the queue has processed a function
-	 * Used to perform side effects after processing the queue
-	 * @returns {void}
-	 */
-	afterProcess?: () => void;
-	/**
-	 * A function that can be used to prevent the queue from processing under certain conditions
-	 * Can also be used to perform side effects before processing the queue
-	 * @returns {boolean} If `false`, the queue will not process
-	 */
-	beforeProcess?: () => boolean;
-};
+  /**
+   * A function that is called after the queue has processed a function
+   * Used to perform side effects after processing the queue
+   * @returns {void}
+   */
+  afterProcess?: () => void
+  /**
+   * A function that can be used to prevent the queue from processing under certain conditions
+   * Can also be used to perform side effects before processing the queue
+   * @returns {boolean} If `false`, the queue will not process
+   */
+  beforeProcess?: () => boolean
+}
 
-type QueueTask = (fn: QueuedFunction, options?: QueuedTaskOptions) => void;
+type QueueTask = (fn: QueuedFunction, options?: QueuedTaskOptions) => void
 
 /**
  * A React hook that allows you to queue up functions to be executed in order.
@@ -36,53 +36,56 @@ type QueueTask = (fn: QueuedFunction, options?: QueuedTaskOptions) => void;
  * })
  */
 export function useQueues(): {
-	queueTask: QueueTask;
+  queueTask: QueueTask
 } {
-	const queue = useRef<QueuedFunction[]>([]);
+  const queue = useRef<QueuedFunction[]>([])
 
-	const isProcessing = useRef(false);
+  const isProcessing = useRef(false)
 
-	const queueTask = useCallback<QueueTask>((fn, options) => {
-		queue.current.push(fn);
+  const queueTask = useCallback<QueueTask>((fn, options) => {
+    queue.current.push(fn)
 
-		async function processQueue() {
-			if (isProcessing.current) {
-				return;
-			}
+    /**
+     *
+     */
+    async function processQueue() {
+      if (isProcessing.current) {
+        return
+      }
 
-			// Allow the consumer to prevent the queue from processing under certain conditions
-			if (typeof options?.beforeProcess === 'function') {
-				const shouldContinue = options.beforeProcess();
+      // Allow the consumer to prevent the queue from processing under certain conditions
+      if (typeof options?.beforeProcess === 'function') {
+        const shouldContinue = options.beforeProcess()
 
-				if (shouldContinue === false) {
-					return;
-				}
-			}
+        if (!shouldContinue) {
+          return
+        }
+      }
 
-			while (queue.current.length > 0) {
-				const latestTask = queue.current.pop(); // Only process the last task in the queue
-				queue.current = []; // Discard all other tasks
+      while (queue.current.length > 0) {
+        const latestTask = queue.current.pop() // Only process the last task in the queue
+        queue.current = [] // Discard all other tasks
 
-				isProcessing.current = true;
+        isProcessing.current = true
 
-				try {
-					if (latestTask) {
-						await latestTask();
-					}
-				} catch (err) {
-					console.error('Error in queued function:', err); // eslint-disable-line no-console
-				} finally {
-					isProcessing.current = false;
+        try {
+          if (latestTask) {
+            await latestTask()
+          }
+        } catch (error) {
+          console.error('Error in queued function:', error)
+        } finally {
+          isProcessing.current = false
 
-					if (typeof options?.afterProcess === 'function') {
-						options.afterProcess();
-					}
-				}
-			}
-		}
+          if (typeof options?.afterProcess === 'function') {
+            options.afterProcess()
+          }
+        }
+      }
+    }
 
-		void processQueue();
-	}, []);
+    void processQueue()
+  }, [])
 
-	return { queueTask };
+  return { queueTask }
 }

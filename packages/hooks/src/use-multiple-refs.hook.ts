@@ -1,26 +1,22 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
 
 /**
  * Iterator function for making the refs object iterable
  * This allows using the refs in a for...of loop or spread operator
- *
+ * @param this
+ * @param this.next
  * @returns The iterator object itself
  */
-function iterator(this: {
-	next: () => void;
-	[Symbol.iterator]: () => unknown;
-}) {
-	return this;
+function iterator(this: { [Symbol.iterator]: () => unknown; next: () => void }) {
+  return this
 }
 
 /**
  * Hook that creates an iterable collection of refs with the same initial value.
  * Useful when you need multiple refs with the same initialization, like in a list of elements.
- *
  * @template T Type of the ref value
  * @param initialValue Initial value for all created refs
  * @returns An iterable object that creates new refs on each iteration
- *
  * @example
  * ```tsx
  * const refs = useMultipleRefs<HTMLDivElement>(null)
@@ -38,22 +34,22 @@ function iterator(this: {
  * ```
  */
 export function useMultipleRefs<T>(initialValue: T) {
-	return {
-		/**
-		 * Creates a new ref on each call to next()
-		 * Required for iterator protocol
-		 * @returns Object containing the new ref
-		 */
-		next() {
-			return {
-				done: false,
-				// eslint-disable-next-line react-hooks/rules-of-hooks
-				value: useRef(initialValue),
-			};
-		},
-		/**
-		 * Makes the object iterable by implementing Symbol.iterator
-		 */
-		[Symbol.iterator]: iterator,
-	};
+  return {
+    /**
+     * Creates a new ref on each call to next()
+     * Required for iterator protocol
+     * @returns Object containing the new ref
+     */
+    next() {
+      return {
+        done: false,
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        value: useRef(initialValue)
+      }
+    },
+    /**
+     * Makes the object iterable by implementing Symbol.iterator
+     */
+    [Symbol.iterator]: iterator
+  }
 }

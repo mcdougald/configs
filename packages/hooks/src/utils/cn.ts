@@ -1,24 +1,25 @@
-import type { cva } from 'class-variance-authority';
-import { type ClassValue, clsx } from 'clsx';
-import { type ReactElement, type ReactNode, isValidElement } from 'react';
-import { twMerge } from 'tailwind-merge';
-export type PickSelect<T, K extends keyof T> = T[K];
-export type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
-export type XOR<T, U> = T | U extends object
-	? (Without<T, U> & U) | (Without<U, T> & T)
-	: T | U;
+import type { cva } from 'class-variance-authority'
 
-export type Anatomy = { [key: string]: ReturnType<typeof cva> };
+import { type ClassValue, clsx } from 'clsx'
+import { isValidElement, type ReactElement, type ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
+
+export type PickSelect<T, K extends keyof T> = T[K]
+export type Without<T, U> = Partial<Record<Exclude<keyof T, keyof U>, never>>
+export type XOR<T, U> = T | U extends object ? (T & Without<U, T>) | (U & Without<T, U>) : T | U
+
+export type Anatomy = Record<string, ReturnType<typeof cva>>
 
 // export type ComponentAnatomy<T extends Anatomy> = {
 //     [K in keyof T as `${string & K}Class`]?: string
 // }
 
 export type ComponentAnatomy<T extends Anatomy> = {
-	[K in keyof T as K extends 'root' ? never : `${string & K}Class`]?: string;
-};
+  [K in keyof T as K extends 'root' ? never : `${K & string}Class`]?: string
+}
 
 /**
+ * @param config
  * @example
  * const ComponentAnatomy = defineStyleAnatomy({
  *    label: cva(null, {
@@ -46,57 +47,52 @@ export type ComponentAnatomy<T extends Anatomy> = {
  * })
  */
 export function defineStyleAnatomy<A extends Anatomy = Anatomy>(config: A) {
-	return config;
+  return config
 }
 
+/**
+ *
+ * @param {...any} inputs
+ */
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
+/**
+ *
+ * @param {...any} inputs
+ */
 export function cx(...inputs: ClassValue[]) {
-	return clsx(...inputs);
+  return clsx(...inputs)
 }
 
 /**
  * Checks if the given element is a React element.
- *
  * @param element - The element to check.
  * @returns Whether the element is a React element.
  */
 export const isReactElement = (element: ReactNode): element is ReactElement => {
-	return isValidElement(element);
-};
+  return isValidElement(element)
+}
 
 /**
  * Typeguard function that checks if the given element is a
  * React element with a className prop.
- *
  * @param element
  * @returns Whether the element is a React element with a className prop.
  */
-export const isElementWithClassName = (
-	element: ReactNode,
-): element is ReactElement<{ className?: string }> => {
-	return (
-		isValidElement(element) &&
-		typeof (element as ReactElement<{ className?: string }>).props.className ===
-			'string'
-	);
-};
+export const isElementWithClassName = (element: ReactNode): element is ReactElement<{ className?: string }> => {
+  return (
+    isValidElement(element) && typeof (element as ReactElement<{ className?: string }>).props.className === 'string'
+  )
+}
 
 /**
  * Typeguard function that checks if the given element is a
  * React element with a children prop.
- *
  * @param element
  * @returns Whether the element is a React element with a children prop.
  */
-export const isElementWithChildren = (
-	element: ReactNode,
-): element is ReactElement<{ children?: ReactNode }> => {
-	return (
-		isValidElement(element) &&
-		typeof (element as ReactElement<{ children?: ReactNode }>).props
-			.children !== 'undefined'
-	);
-};
+export const isElementWithChildren = (element: ReactNode): element is ReactElement<{ children?: ReactNode }> => {
+  return isValidElement(element) && (element as ReactElement<{ children?: ReactNode }>).props.children !== undefined
+}

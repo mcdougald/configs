@@ -1,8 +1,9 @@
 /**
  * Split path into segments, trailing/leading slashes are removed
+ * @param path
  */
 export function splitPath(path: string): string[] {
-	return path.split('/').filter((p) => p.length > 0);
+  return path.split('/').filter((p) => p.length > 0)
 }
 
 /**
@@ -18,33 +19,40 @@ export function splitPath(path: string): string[] {
  * ```
  */
 export function resolvePath(from: string, join: string): string {
-	const v1 = splitPath(from),
-		v2 = splitPath(join);
+  const v1 = splitPath(from),
+    v2 = splitPath(join)
 
-	while (v2.length > 0) {
-		switch (v2[0]) {
-			case '..':
-				v1.pop();
-				break;
-			case '.':
-				break;
-			default:
-				// @ts-ignore
-				v1.push(v2[0]);
-		}
+  while (v2.length > 0) {
+    switch (v2[0]) {
+      case '.': {
+        break
+      }
+      case '..': {
+        v1.pop()
+        break
+      }
+      default: {
+        // @ts-ignore
+        v1.push(v2[0])
+      }
+    }
 
-		v2.shift();
-	}
+    v2.shift()
+  }
 
-	return v1.join('/');
+  return v1.join('/')
 }
 
+/**
+ *
+ * @param path
+ */
 export function slash(path: string): string {
-	const isExtendedLengthPath = path.startsWith('\\\\?\\');
+  const isExtendedLengthPath = path.startsWith('\\\\?\\')
 
-	if (isExtendedLengthPath) {
-		return path;
-	}
+  if (isExtendedLengthPath) {
+    return path
+  }
 
-	return path.replaceAll('\\', '/');
+  return path.replaceAll('\\', '/')
 }

@@ -1,3 +1,3 @@
-'use client';
+'use client'
 
-export * from './use-virtual-table';
+export * from './use-virtual-table'

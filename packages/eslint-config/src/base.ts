@@ -4,6 +4,7 @@ import { isPackageExists } from 'local-pkg'
 
 import { command } from './configs/command'
 import { comments } from './configs/comments'
+import { css } from './configs/css'
 import { deMorgan } from './configs/de-morgan'
 import { gitignore } from './configs/gitignore'
 import { ignores } from './configs/ignores'
@@ -11,18 +12,24 @@ import { importSort } from './configs/import-sort'
 import { imports } from './configs/imports'
 import { javascript } from './configs/javascript'
 import { jsdoc } from './configs/jsdoc'
+import { json } from './configs/json'
 import { jsx } from './configs/jsx'
+import { markdown } from './configs/markdown'
 import { nextjs } from './configs/nextjs'
 import { node } from './configs/node'
+import { packageJson } from './configs/package-json'
+import { perfectionist } from './configs/perfectionist'
 import { playwright } from './configs/playwright'
 import { prettier } from './configs/prettier'
 import { react } from './configs/react'
 import { regexp } from './configs/regexp'
 import { sonarjs } from './configs/sonarjs'
 import { tailwindcss } from './configs/tailwindcss'
+import { toml } from './configs/toml'
 import { typescript } from './configs/typescript'
 import { unicorn } from './configs/unicorn'
 import { vitest } from './configs/vitest'
+import { yaml } from './configs/yaml'
 
 const isReactInstalled = isPackageExists('react')
 const isNextjsInstalled = isPackageExists('next')
@@ -45,7 +52,16 @@ export const defineConfig = (options: ConfigOptions = {}): FlatConfig[] => {
     ...unicorn(overrides.unicorn),
     ...jsx(overrides.jsx),
     ...typescript(options.tsconfigRootDir, overrides.typescript),
-    ...regexp(overrides.regexp)
+    ...regexp(overrides.regexp),
+    ...perfectionist(overrides.perfectionist),
+
+    // Data and document file types
+    ...json(overrides.json),
+    ...packageJson(overrides.packageJson),
+    ...yaml(overrides.yaml),
+    ...toml(overrides.toml),
+    ...css(overrides.css),
+    ...markdown(overrides.markdown)
   ]
 
   const isNextjsEnabled = options.nextjs ?? isNextjsInstalled
@@ -60,7 +76,7 @@ export const defineConfig = (options: ConfigOptions = {}): FlatConfig[] => {
   }
 
   if (isReactEnabled) {
-    configs.push(...react(overrides.react))
+    configs.push(...react(overrides.react, overrides.reactYouMightNotNeedAnEffect))
   }
 
   if (isNextjsEnabled) {

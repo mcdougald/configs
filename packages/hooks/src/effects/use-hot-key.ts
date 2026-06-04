@@ -1,18 +1,27 @@
-'use client';
-import { useEffect } from 'react';
+'use client'
+import { useEffect } from 'react'
 
+/**
+ *
+ * @param callback
+ * @param key
+ */
 export function useHotKey(callback: () => void, key: string): void {
-	useEffect(() => {
-		function handler(e: KeyboardEvent) {
-			if (e.key === key && (e.metaKey || e.ctrlKey)) {
-				// e.preventDefault();
-				callback();
-			}
-		}
+  useEffect(() => {
+    /**
+     *
+     * @param e
+     */
+    function handler(e: KeyboardEvent) {
+      if (e.key === key && (e.metaKey || e.ctrlKey)) {
+        // e.preventDefault();
+        callback()
+      }
+    }
 
-		window.addEventListener('keydown', handler);
-		return () => {
-			window.removeEventListener('keydown', handler);
-		};
-	}, [key]);
+    globalThis.addEventListener('keydown', handler)
+    return () => {
+      globalThis.removeEventListener('keydown', handler)
+    }
+  }, [key])
 }

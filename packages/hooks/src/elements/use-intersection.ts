@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useState } from 'react';
+import { type RefObject, useEffect, useState } from 'react'
 
 /*
 Examples
@@ -38,30 +38,29 @@ if (inViewport) {
  * @param options
  */
 export const useIntersection = (
-	ref: RefObject<HTMLElement>,
-	options: IntersectionObserverInit,
+  ref: RefObject<HTMLElement>,
+  options: IntersectionObserverInit
 ): IntersectionObserverEntry | null => {
-	const [intersectionObserverEntry, setIntersectionObserverEntry] =
-		useState<IntersectionObserverEntry | null>(null);
+  const [intersectionObserverEntry, setIntersectionObserverEntry] = useState<IntersectionObserverEntry | null>(null)
 
-	useEffect(() => {
-		if (ref.current && typeof IntersectionObserver === 'function') {
-			const handler = (entries: IntersectionObserverEntry[]) => {
-				setIntersectionObserverEntry(entries?.[0] ?? null);
-			};
+  useEffect(() => {
+    if (ref.current && typeof IntersectionObserver === 'function') {
+      const handler = (entries: IntersectionObserverEntry[]) => {
+        setIntersectionObserverEntry(entries?.[0] ?? null)
+      }
 
-			const observer = new IntersectionObserver(handler, options);
-			observer.observe(ref.current);
+      const observer = new IntersectionObserver(handler, options)
+      observer.observe(ref.current)
 
-			return () => {
-				setIntersectionObserverEntry(null);
-				observer.disconnect();
-			};
-		}
-		// eslint-disable-next-line @typescript-eslint/no-empty-function
-		return () => {};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ref.current, options.threshold, options.root, options.rootMargin]);
+      return () => {
+        setIntersectionObserverEntry(null)
+        observer.disconnect()
+      }
+    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return () => {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref.current, options.threshold, options.root, options.rootMargin])
 
-	return intersectionObserverEntry;
-};
+  return intersectionObserverEntry
+}

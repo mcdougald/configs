@@ -1,202 +1,176 @@
-import { clamp, isNaN } from 'lodash-es';
+import { clamp, isNaN } from 'lodash-es'
 
-type SizeProp = string;
+type SizeProp = string
 
-export const getRelativeElementData = <T extends string>(
-	delta: number,
-	options: RelativeElementOptions<T>,
-) => {
-	const { minElement, maxElement, elements = [] } = options;
+export const getRelativeElementData = <T extends string>(delta: number, options: RelativeElementOptions<T>) => {
+  const { minElement, maxElement, elements = [] } = options
 
-	const middle = Math.floor(elements.length / 2);
+  const middle = Math.floor(elements.length / 2)
 
-	const { relativeElement = elements[middle] } = options;
+  const { relativeElement = elements[middle] } = options
 
-	const [relative, min, max] = [relativeElement, minElement, maxElement].map(
-		(element) => {
-			const lower = 0;
+  const [relative, min, max] = [relativeElement, minElement, maxElement].map((element) => {
+    const lower = 0
 
-			const upper = Math.max(0, elements.length - 1);
+    const upper = Math.max(0, elements.length - 1)
 
-			const unboundIndex = elements.findIndex((e) => e === element);
+    const unboundIndex = elements.indexOf(element)
 
-			const boundIndex = clamp(unboundIndex, lower, upper);
+    const boundIndex = clamp(unboundIndex, lower, upper)
 
-			const boundElement = elements[boundIndex];
+    const boundElement = elements[boundIndex]
 
-			return {
-				boundIndex,
-				unboundIndex,
-				boundElement,
-				isBoundsExceeded: isNaN(unboundIndex)
-					? null
-					: unboundIndex !== boundIndex,
-			};
-		},
-	);
+    return {
+      boundIndex,
+      unboundIndex,
+      boundElement,
+      isBoundsExceeded: isNaN(unboundIndex) ? null : unboundIndex !== boundIndex
+    }
+  })
 
-	const {
-		boundIndex: relativeIndex,
-		// boundElement: relativeBoundElement,
-		unboundIndex: originalRelativeIndex,
-	} = relative!;
+  const {
+    boundIndex: relativeIndex,
+    // boundElement: relativeBoundElement,
+    unboundIndex: originalRelativeIndex
+  } = relative!
 
-	const {
-		boundIndex: upperBoundsIndex,
-		boundElement: upperBoundElement,
-		unboundIndex: originalMaxIndex,
-	} = max!;
+  const { boundIndex: upperBoundsIndex, boundElement: upperBoundElement, unboundIndex: originalMaxIndex } = max!
 
-	const {
-		boundIndex: lowerBoundIndex,
-		boundElement: lowerBoundElement,
-		unboundIndex: originalMinIndex,
-	} = min!;
+  const { boundIndex: lowerBoundIndex, boundElement: lowerBoundElement, unboundIndex: originalMinIndex } = min!
 
-	const deltaIndex = relativeIndex + delta;
+  const deltaIndex = relativeIndex + delta
 
-	const elementIndex = clamp(deltaIndex, lowerBoundIndex, upperBoundsIndex);
+  const elementIndex = clamp(deltaIndex, lowerBoundIndex, upperBoundsIndex)
 
-	const element = elements[elementIndex]!;
+  const element = elements[elementIndex]!
 
-	const upperBoundsDistance = upperBoundsIndex - elementIndex;
+  const upperBoundsDistance = upperBoundsIndex - elementIndex
 
-	const lowerBoundsDistance = elementIndex - lowerBoundIndex;
+  const lowerBoundsDistance = elementIndex - lowerBoundIndex
 
-	const isDeltaExceedingUpperBound = deltaIndex > upperBoundsIndex;
+  const isDeltaExceedingUpperBound = deltaIndex > upperBoundsIndex
 
-	const isDeltaExceedingLowerBound = deltaIndex < upperBoundsIndex;
+  const isDeltaExceedingLowerBound = deltaIndex < upperBoundsIndex
 
-	const isLowerBoundReached = upperBoundsIndex === deltaIndex;
+  const isLowerBoundReached = upperBoundsIndex === deltaIndex
 
-	const isUpperBoundReached = lowerBoundIndex === deltaIndex;
+  const isUpperBoundReached = lowerBoundIndex === deltaIndex
 
-	const isBoundsReached = isLowerBoundReached || isUpperBoundReached;
+  const isBoundsReached = isLowerBoundReached || isUpperBoundReached
 
-	const isDeltaExceedingBounds =
-		isDeltaExceedingUpperBound || isDeltaExceedingLowerBound;
+  const isDeltaExceedingBounds = isDeltaExceedingUpperBound || isDeltaExceedingLowerBound
 
-	return {
-		element,
-		elementIndex,
-		relativeIndex,
-		isBoundsReached,
-		isDeltaExceedingBounds,
-		isLowerBoundReached,
-		isUpperBoundReached,
-		isDeltaExceedingLowerBound,
-		isDeltaExceedingUpperBound,
-		upperBoundsDistance,
-		lowerBoundsDistance,
-		meta: {
-			originalElements: elements,
-			originalMaxElement: maxElement,
-			originalMinElement: minElement,
-			originalRelativeIndex,
-			originalMinIndex,
-			originalMaxIndex,
-			elementDeltaString: [
-				delta > 0 && `▲ (${delta})`,
-				delta < 0 && `🔻 (${delta})`,
-				`${element}__${elementIndex} from ${relativeElement ?? ''}__${relativeIndex}`,
-				!delta && `0 delta`,
-				`${relativeElement ?? 'N/A'} -> ${element}`,
-				`Bounds: [${lowerBoundElement ?? ''}, ${
-					upperBoundElement ?? ''
-				}] [${lowerBoundIndex}, ${upperBoundsIndex}]`,
-				isUpperBoundReached && 'Upper Bounds Reached',
-				isLowerBoundReached && 'Lower Bounds Reached',
-				isDeltaExceedingLowerBound && 'Delta Exceeding Lower Bound',
-				isDeltaExceedingUpperBound && 'Delta Exceeding Upper Bound',
-			]
-				.filter(Boolean)
-				.join(' :: '),
-		},
-	};
-};
+  return {
+    element,
+    elementIndex,
+    relativeIndex,
+    isBoundsReached,
+    isDeltaExceedingBounds,
+    isLowerBoundReached,
+    isUpperBoundReached,
+    isDeltaExceedingLowerBound,
+    isDeltaExceedingUpperBound,
+    upperBoundsDistance,
+    lowerBoundsDistance,
+    meta: {
+      originalElements: elements,
+      originalMaxElement: maxElement,
+      originalMinElement: minElement,
+      originalRelativeIndex,
+      originalMinIndex,
+      originalMaxIndex,
+      elementDeltaString: [
+        delta > 0 && `▲ (${delta})`,
+        delta < 0 && `🔻 (${delta})`,
+        `${element}__${elementIndex} from ${relativeElement ?? ''}__${relativeIndex}`,
+        !delta && `0 delta`,
+        `${relativeElement ?? 'N/A'} -> ${element}`,
+        `Bounds: [${lowerBoundElement ?? ''}, ${upperBoundElement ?? ''}] [${lowerBoundIndex}, ${upperBoundsIndex}]`,
+        isUpperBoundReached && 'Upper Bounds Reached',
+        isLowerBoundReached && 'Lower Bounds Reached',
+        isDeltaExceedingLowerBound && 'Delta Exceeding Lower Bound',
+        isDeltaExceedingUpperBound && 'Delta Exceeding Upper Bound'
+      ]
+        .filter(Boolean)
+        .join(' :: ')
+    }
+  }
+}
 
-export interface RelativeSizePropDataOptions<
-	TOptions extends
-		RelativeElementOptions<SizeProp> = RelativeElementOptions<SizeProp>,
-> {
-	sizes?: TOptions['elements'];
-	minSize?: TOptions['minElement'];
-	maxSize?: TOptions['maxElement'];
-	relativeSize?: TOptions['relativeElement'];
+export interface RelativeSizePropDataOptions<TOptions extends RelativeElementOptions = RelativeElementOptions> {
+  maxSize?: TOptions['maxElement']
+  minSize?: TOptions['minElement']
+  relativeSize?: TOptions['relativeElement']
+  sizes?: TOptions['elements']
 }
 export const getRelativeSizePropData = (
-	/** The number that the relative size will be incremented or decremented by */
-	sizeChange: number,
-	options: RelativeSizePropDataOptions,
+  /** The number that the relative size will be incremented or decremented by */
+  sizeChange: number,
+  options: RelativeSizePropDataOptions
 ) => {
-	const {
-		relativeSize = 'md',
-		minSize = 'xs',
-		maxSize = 'lg',
-		sizes = ['xs', 'sm', 'md', 'lg'],
-	} = options;
+  const { relativeSize = 'md', minSize = 'xs', maxSize = 'lg', sizes = ['xs', 'sm', 'md', 'lg'] } = options
 
-	const {
-		element: sizeProp,
-		elementIndex: sizePropIndex,
-		relativeIndex: relativeSizePropIndex,
-		meta: {
-			originalMaxElement: originalMaxSizeProp,
-			originalMaxIndex: originalMaxSizePropIndex,
-			originalRelativeIndex: originalRelativeSizeIndex,
-			originalElements: originalSizes,
-			originalMinElement: originalMinSizeProp,
-			originalMinIndex: originalMinSizeIndex,
-			elementDeltaString: sizeDeltaString,
-		},
-		...rest
-	} = getRelativeElementData<SizeProp>(sizeChange, {
-		elements: sizes,
-		relativeElement: relativeSize,
-		minElement: minSize,
-		maxElement: maxSize,
-	});
+  const {
+    element: sizeProp,
+    elementIndex: sizePropIndex,
+    relativeIndex: relativeSizePropIndex,
+    meta: {
+      originalMaxElement: originalMaxSizeProp,
+      originalMaxIndex: originalMaxSizePropIndex,
+      originalRelativeIndex: originalRelativeSizeIndex,
+      originalElements: originalSizes,
+      originalMinElement: originalMinSizeProp,
+      originalMinIndex: originalMinSizeIndex,
+      elementDeltaString: sizeDeltaString
+    },
+    ...rest
+  } = getRelativeElementData<SizeProp>(sizeChange, {
+    elements: sizes,
+    relativeElement: relativeSize,
+    minElement: minSize,
+    maxElement: maxSize
+  })
 
-	return {
-		sizeProp,
-		sizePropIndex,
-		relativeSizePropIndex,
-		meta: {
-			originalMaxSizeProp,
-			originalMaxSizePropIndex,
-			originalRelativeSizeIndex,
-			originalSizes,
-			originalMinSizeProp,
-			originalMinSizeIndex,
-			sizeDeltaString,
-		},
-		...rest,
-	};
-};
+  return {
+    sizeProp,
+    sizePropIndex,
+    relativeSizePropIndex,
+    meta: {
+      originalMaxSizeProp,
+      originalMaxSizePropIndex,
+      originalRelativeSizeIndex,
+      originalSizes,
+      originalMinSizeProp,
+      originalMinSizeIndex,
+      sizeDeltaString
+    },
+    ...rest
+  }
+}
 
 /**
  * Get a size property relative to another size property
- *
+ * @param sizeChange
+ * @param options
  * @example
  *
  * const size = getRelativeSizeProp(-10, {relativeSize: "lg", minSize: "sm", maxSize: "lg"})
  *
  * console.log(size) // Output: "sm"
- *
  */
 export const getRelativeSizeProp = (
-	/** The number that the relative size will be incremented or decremented by */
-	sizeChange: number,
-	options: RelativeSizePropDataOptions,
+  /** The number that the relative size will be incremented or decremented by */
+  sizeChange: number,
+  options: RelativeSizePropDataOptions
 ) => {
-	const { sizeProp } = getRelativeSizePropData(sizeChange, options);
+  const { sizeProp } = getRelativeSizePropData(sizeChange, options)
 
-	return sizeProp;
-};
+  return sizeProp
+}
 
 interface RelativeElementOptions<T extends string = string> {
-	relativeElement?: T | undefined;
-	minElement?: T;
-	maxElement?: T;
-	elements?: T[];
+  elements?: T[]
+  maxElement?: T
+  minElement?: T
+  relativeElement?: T | undefined
 }

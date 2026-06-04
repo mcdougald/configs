@@ -1,3 +1,3 @@
-'use client';
+'use client'
 
-export * from './use-history-stack';
+export * from './use-history-stack'

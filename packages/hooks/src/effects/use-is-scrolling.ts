@@ -1,38 +1,39 @@
-import { useReducer, useRef } from 'react';
-import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect';
+import { useReducer, useRef } from 'react'
+
+import useIsomorphicLayoutEffect from './use-isomorphic-layout-effect'
 
 const useIsScrolling = (debounce: number) => {
-	const rerender = useReducer(() => ({}), {})[1];
+  const rerender = useReducer(() => ({}), {})[1]
 
-	const ref = useRef(false);
+  const ref = useRef(false)
 
-	useIsomorphicLayoutEffect(() => {
-		let timeout: ReturnType<typeof setTimeout>;
+  useIsomorphicLayoutEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>
 
-		const cb = () => {
-			if (!ref.current) {
-				ref.current = true;
-				rerender();
-			}
+    const cb = () => {
+      if (!ref.current) {
+        ref.current = true
+        rerender()
+      }
 
-			clearTimeout(timeout);
+      clearTimeout(timeout)
 
-			timeout = setTimeout(() => {
-				if (ref.current) {
-					ref.current = false;
-					rerender();
-				}
-			}, debounce);
-		};
+      timeout = setTimeout(() => {
+        if (ref.current) {
+          ref.current = false
+          rerender()
+        }
+      }, debounce)
+    }
 
-		document.addEventListener('scroll', cb, true);
+    document.addEventListener('scroll', cb, true)
 
-		return () => {
-			clearTimeout(timeout);
-			document.removeEventListener('scroll', cb);
-		};
-	}, [debounce]);
+    return () => {
+      clearTimeout(timeout)
+      document.removeEventListener('scroll', cb)
+    }
+  }, [debounce])
 
-	return ref.current;
-};
-export default useIsScrolling;
+  return ref.current
+}
+export default useIsScrolling

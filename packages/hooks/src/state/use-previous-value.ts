@@ -1,11 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
+/**
+ *
+ * @param value
+ */
 export function usePreviousValue<T>(value: T): T | undefined {
-	const ref = useRef<T | undefined>(undefined);
+  const ref = useRef<T | undefined>(undefined)
 
-	useEffect(() => {
-		ref.current = value;
-	}, [value]);
+  useEffect(() => {
+    ref.current = value
+  }, [value])
 
-	return ref.current;
+  return ref.current
 }

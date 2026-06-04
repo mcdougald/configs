@@ -1,24 +1,26 @@
-'use client';
-import { useEffect, useState } from 'react';
+'use client'
+import { useEffect, useState } from 'react'
 
 const useMountTransition = (isMounted: boolean, unmountDelay: number) => {
-	const [hasTransitionedIn, setHasTransitionedIn] = useState(false);
+  const [hasTransitionedIn, setHasTransitionedIn] = useState(false)
 
-	useEffect(() => {
-		let timeoutId: string | number | NodeJS.Timeout | undefined;
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout | number | string | undefined
 
-		if (isMounted && !hasTransitionedIn) {
-			setHasTransitionedIn(true);
-		} else if (!isMounted && hasTransitionedIn) {
-			timeoutId = setTimeout(() => setHasTransitionedIn(false), unmountDelay);
-		}
+    if (isMounted && !hasTransitionedIn) {
+      setHasTransitionedIn(true)
+    } else if (!isMounted && hasTransitionedIn) {
+      timeoutId = setTimeout(() => {
+        setHasTransitionedIn(false)
+      }, unmountDelay)
+    }
 
-		return () => {
-			clearTimeout(timeoutId);
-		};
-	}, [hasTransitionedIn, isMounted, unmountDelay]);
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [hasTransitionedIn, isMounted, unmountDelay])
 
-	return hasTransitionedIn;
-};
+  return hasTransitionedIn
+}
 
-export { useMountTransition };
+export { useMountTransition }

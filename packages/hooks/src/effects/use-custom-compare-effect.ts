@@ -1,49 +1,37 @@
-import {
-	type DependencyList,
-	type EffectCallback,
-	useEffect,
-	useRef,
-} from 'react';
+import { type DependencyList, type EffectCallback, useEffect, useRef } from 'react'
 
-const isPrimitive = (val: any) => val !== Object(val);
+const isPrimitive = (val: any) => val !== Object(val)
 
-type DepsEqualFnType<TDeps extends DependencyList> = (
-	prevDeps: TDeps,
-	nextDeps: TDeps,
-) => boolean;
+type DepsEqualFnType<TDeps extends DependencyList> = (prevDeps: TDeps, nextDeps: TDeps) => boolean
 
 const useCustomCompareEffect = <TDeps extends DependencyList>(
-	effect: EffectCallback,
-	deps: TDeps,
-	depsEqual: DepsEqualFnType<TDeps>,
+  effect: EffectCallback,
+  deps: TDeps,
+  depsEqual: DepsEqualFnType<TDeps>
 ) => {
-	if (process.env.NODE_ENV !== 'production') {
-		if (!(deps instanceof Array) || !deps.length) {
-			console.warn(
-				'`useCustomCompareEffect` should not be used with no dependencies. Use React.useEffect instead.',
-			);
-		}
+  if (process.env.NODE_ENV !== 'production') {
+    if (!Array.isArray(deps) || deps.length === 0) {
+      console.warn('`useCustomCompareEffect` should not be used with no dependencies. Use React.useEffect instead.')
+    }
 
-		if (deps.every(isPrimitive)) {
-			console.warn(
-				'`useCustomCompareEffect` should not be used with dependencies that are all primitive values. Use React.useEffect instead.',
-			);
-		}
+    if (deps.every(isPrimitive)) {
+      console.warn(
+        '`useCustomCompareEffect` should not be used with dependencies that are all primitive values. Use React.useEffect instead.'
+      )
+    }
 
-		if (typeof depsEqual !== 'function') {
-			console.warn(
-				'`useCustomCompareEffect` should be used with depsEqual callback for comparing deps list',
-			);
-		}
-	}
+    if (typeof depsEqual !== 'function') {
+      console.warn('`useCustomCompareEffect` should be used with depsEqual callback for comparing deps list')
+    }
+  }
 
-	const ref = useRef<TDeps | undefined>(undefined);
+  const ref = useRef<TDeps | undefined>(undefined)
 
-	if (!ref.current || !depsEqual(deps, ref.current)) {
-		ref.current = deps;
-	}
+  if (!ref.current || !depsEqual(deps, ref.current)) {
+    ref.current = deps
+  }
 
-	useEffect(effect, ref.current);
-};
+  useEffect(effect, ref.current)
+}
 
-export default useCustomCompareEffect;
+export default useCustomCompareEffect

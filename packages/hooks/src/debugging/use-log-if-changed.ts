@@ -1,23 +1,24 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
 
+/**
+ *
+ * @param value
+ */
 function print(value: any) {
-	if (typeof value === 'object') {
-		return JSON.stringify(value);
-	} else {
-		// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-		return `${value}`;
-	}
+  return typeof value === 'object' ? JSON.stringify(value) : `${value}`
 }
 
+/**
+ *
+ * @param name
+ * @param value
+ */
 export function useLogIfChanged<T>(name: string, value: T) {
-	const previous = useRef(value);
-	if (!Object.is(previous.current, value)) {
-		console.log(
-			`${name} changed. Old: ${print(previous.current)}, New: ${print(value)} `,
-		);
-		previous.current = value;
-	} else {
-		// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-		console.log(`${name} unchanged: ${previous.current === value}`);
-	}
+  const previous = useRef(value)
+  if (Object.is(previous.current, value)) {
+    console.log(`${name} unchanged: ${previous.current === value}`)
+  } else {
+    console.log(`${name} changed. Old: ${print(previous.current)}, New: ${print(value)} `)
+    previous.current = value
+  }
 }

@@ -1,10 +1,12 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
+import { GLOB_SRC } from '../globs'
 import { importSortPlugin } from '../plugins'
 
 export const importSort = (overrides?: RuleOverrides): FlatConfig[] => [
   {
     name: 'mcdougald/import-sort/rules',
+    files: [GLOB_SRC],
     plugins: {
       'import-sort': importSortPlugin
     },

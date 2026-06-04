@@ -1,10 +1,12 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
+import { GLOB_SRC } from '../globs'
 import { commentsPlugin } from '../plugins'
 
 export const comments = (overrides?: RuleOverrides): FlatConfig[] => [
   {
     name: 'mcdougald/eslint-comments/rules',
+    files: [GLOB_SRC],
     plugins: {
       '@eslint-community/eslint-comments': commentsPlugin
     },

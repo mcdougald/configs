@@ -1,26 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react'
 
 export const useHash = () => {
-	const [hash, setHash] = useState(() => window.location.hash);
+  const [hash, setHash] = useState(() => globalThis.location.hash)
 
-	const hashChangeHandler = useCallback(() => {
-		setHash(window.location.hash);
-	}, []);
+  const hashChangeHandler = useCallback(() => {
+    setHash(globalThis.location.hash)
+  }, [])
 
-	useEffect(() => {
-		window.addEventListener('hashchange', hashChangeHandler);
-		return () => {
-			window.removeEventListener('hashchange', hashChangeHandler);
-		};
-	}, []);
+  useEffect(() => {
+    globalThis.addEventListener('hashchange', hashChangeHandler)
+    return () => {
+      globalThis.removeEventListener('hashchange', hashChangeHandler)
+    }
+  }, [])
 
-	const updateHash = useCallback(
-		(newHash: string) => {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-			if (newHash !== hash) window.location.hash = newHash;
-		},
-		[hash],
-	);
+  const updateHash = useCallback(
+    (newHash: string) => {
+      if (newHash !== hash) globalThis.location.hash = newHash
+    },
+    [hash]
+  )
 
-	return [hash, updateHash];
-};
+  return [hash, updateHash]
+}

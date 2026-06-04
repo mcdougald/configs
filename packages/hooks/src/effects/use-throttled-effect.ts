@@ -1,13 +1,9 @@
-'use client';
-import type React from 'react';
+'use client'
+import type React from 'react'
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react'
 
-type useThrottledEffect = (
-	callback: React.EffectCallback,
-	delay: number,
-	deps: React.DependencyList,
-) => void;
+type useThrottledEffect = (callback: React.EffectCallback, delay: number, deps: React.DependencyList) => void
 
 /**
  * A hook that will throttle the execution of a callback function inside a useEffect.
@@ -16,26 +12,22 @@ type useThrottledEffect = (
  * @param delay The delay in milliseconds to throttle the callback.
  * @param deps The dependencies to watch for changes.
  */
-export const useThrottledEffect: useThrottledEffect = (
-	callback,
-	delay,
-	deps = [],
-) => {
-	const lastRan = useRef(Date.now());
+export const useThrottledEffect: useThrottledEffect = (callback, delay, deps) => {
+  const lastRan = useRef(Date.now())
 
-	useEffect(() => {
-		const handler = setTimeout(
-			() => {
-				if (Date.now() - lastRan.current >= delay) {
-					callback();
-					lastRan.current = Date.now();
-				}
-			},
-			delay - (Date.now() - lastRan.current),
-		);
+  useEffect(() => {
+    const handler = setTimeout(
+      () => {
+        if (Date.now() - lastRan.current >= delay) {
+          callback()
+          lastRan.current = Date.now()
+        }
+      },
+      delay - (Date.now() - lastRan.current)
+    )
 
-		return () => {
-			clearTimeout(handler);
-		};
-	}, [delay, ...deps]);
-};
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [delay, ...deps])
+}

@@ -1,10 +1,12 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
+import { GLOB_SRC } from '../globs'
 import { sonarjsConfigs, sonarjsPlugin } from '../plugins'
 
 export const sonarjs = (overrides?: RuleOverrides): FlatConfig[] => [
   {
     name: 'mcdougald/sonarjs/rules',
+    files: [GLOB_SRC],
     plugins: {
       sonarjs: sonarjsPlugin
     },

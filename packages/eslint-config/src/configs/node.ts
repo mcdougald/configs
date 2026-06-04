@@ -1,10 +1,12 @@
 import type { FlatConfig, RuleOverrides } from '../types'
 
+import { GLOB_SRC } from '../globs'
 import { nodePlugin } from '../plugins'
 
 export const node = (overrides?: RuleOverrides): FlatConfig[] => [
   {
     name: 'mcdougald/node/rules',
+    files: [GLOB_SRC],
     plugins: {
       n: nodePlugin
     },

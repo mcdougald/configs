@@ -1,5 +1,5 @@
-import { isEqual } from 'lodash-es';
-import { useRef } from 'react';
+import { isEqual } from 'lodash-es'
+import { useRef } from 'react'
 
 /**
  * Memoize a result using deep equality. This hook has two advantages over
@@ -7,16 +7,15 @@ import { useRef } from 'react';
  * that the memo function will only be called if the keys are unequal.
  * React.useMemo cannot be relied on to do this, since it is only a performance
  * optimization (see https://reactjs.org/docs/hooks-reference.html#usememo).
+ * @param memoFn
+ * @param key
  */
-export function useDeepMemo<TKey, TValue>(
-	memoFn: () => TValue,
-	key: TKey,
-): TValue {
-	const ref = useRef<{ key: TKey; value: TValue }>(undefined);
+export function useDeepMemo<TKey, TValue>(memoFn: () => TValue, key: TKey): TValue {
+  const ref = useRef<{ key: TKey; value: TValue }>(undefined)
 
-	if (!ref.current || !isEqual(key, ref.current.key)) {
-		ref.current = { key, value: memoFn() };
-	}
+  if (!ref.current || !isEqual(key, ref.current.key)) {
+    ref.current = { key, value: memoFn() }
+  }
 
-	return ref.current.value;
+  return ref.current.value
 }
